@@ -91,6 +91,17 @@ export default function Page() {
             overflow-x: hidden;
           }
         }
+        
+        /* Force background to cover entire viewport */
+        .fixed.inset-0 {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+        }
 
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -148,35 +159,21 @@ export default function Page() {
 function PersonalizedBackground() {
   return (
     <div 
-      className="fixed -z-10"
+      className="fixed inset-0 -z-10"
       style={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        backgroundImage: `url('/images/background-images/background2.jpg')`,
+        backgroundSize: "cover",
+        // Fallback for mobile devices that might not support cover properly
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
         width: "100vw",
         height: "100vh",
         minWidth: "100vw",
         minHeight: "100vh",
-        overflow: "hidden",
       }}
-    >
-      <img
-        src="/images/background-images/background2.jpg"
-        alt="Background"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-          minWidth: "100%",
-          minHeight: "100%",
-        }}
-      />
-    </div>
+    />
   );
 }
 
