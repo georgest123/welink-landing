@@ -74,11 +74,36 @@ export default function Page() {
           position: fixed !important;
           top: 0 !important;
           left: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
           z-index: 50 !important;
           background-color: black !important;
           overflow: hidden !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          min-width: 100vw !important;
+          min-height: 100vh !important;
+          max-width: 100vw !important;
+          max-height: 100vh !important;
+        }
+        
+        /* Force full screen on all devices */
+        @media screen and (max-width: 768px) {
+          .video-container {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
+            max-width: 100vw !important;
+            max-height: 100vh !important;
+          }
         }
         
         /* Video responsiveness for different platforms */
@@ -266,7 +291,23 @@ function IntroVideo({ onEnterSite }) {
   }
 
   return (
-    <div className="video-container">
+    <div 
+      className="video-container"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 50,
+        backgroundColor: 'black',
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0
+      }}
+    >
       <video
         ref={videoRef}
         autoPlay
