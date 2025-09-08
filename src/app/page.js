@@ -74,6 +74,20 @@ export default function Page() {
           padding: 0; 
           overflow-x: hidden;
         }
+        
+        /* Force full viewport coverage for background */
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Ensure no white space in landscape */
+        @media screen and (orientation: landscape) {
+          html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+          }
+        }
 
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -129,23 +143,20 @@ export default function Page() {
 }
 
 function PersonalizedBackground() {
-  // Remove background-attachment: fixed to avoid mobile jank
   return (
-    <div
-      className="fixed inset-0 -z-10"
-      style={{
-        backgroundImage: `url('/images/background-images/background2.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
-        minWidth: "100vw",
-        minHeight: "100vh",
-        width: "100vw",
-        height: "100vh",
-        // Ensure coverage in landscape mode
-        backgroundAttachment: "scroll",
-      }}
-    />
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <img
+        src="/images/background-images/background2.jpg"
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{
+          minWidth: "100vw",
+          minHeight: "100vh",
+          width: "100vw",
+          height: "100vh",
+        }}
+      />
+    </div>
   );
 }
 
