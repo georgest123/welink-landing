@@ -72,14 +72,26 @@ export default function Page() {
         /* Link-as-button utilities */
         .btn-link {
           display: inline-block;
-          height: 48px;
-          line-height: 48px;
-          padding: 0 24px;
-          border-radius: 1rem;
+          height: 44px;
+          line-height: 44px;
+          padding: 0 20px;
+          border-radius: 0.875rem;
           transition: transform 0.3s, background-color 0.3s;
-          box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.25);
           -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
+          font-size: 14px;
+          text-align: center;
+        }
+        
+        @media (min-width: 640px) {
+          .btn-link {
+            height: 48px;
+            line-height: 48px;
+            padding: 0 24px;
+            border-radius: 1rem;
+            font-size: 16px;
+          }
         }
         .btn-primary { background: rgba(255,255,255,0.95); color: #000; }
         .btn-primary:hover { background: #fff; transform: translateY(-1px) scale(1.05); }
@@ -202,10 +214,10 @@ function NavBar() {
     <div className="sticky top-4 z-30 w-full flex justify-center">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-center">
-          <div className="rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-white/10 w-full max-w-[1500px]">
+          <div className="rounded-2xl sm:rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-white/10 w-full max-w-[1200px] sm:max-w-[1500px]">
             <div className="px-6 py-4 flex items-center justify-between">
               <a href="#top" onClick={() => smoothForAWhile()} className="flex items-center">
-                <Image src="/images/logo.png" alt="WeLink Logo" width={200} height={50} className="w-auto h-auto" />
+                <Image src="/images/logo.png" alt="WeLink Logo" width={200} height={50} className="w-32 sm:w-40 md:w-48 h-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {items.map((it) => (
@@ -262,14 +274,14 @@ function Hero({ userProfile }) {
 
   return (
     <section id="top" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:pb-28 grid md:grid-cols-2 gap-10 items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-28 grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 items-center">
         <div>
           <motion.h1
             initial={reduce ? {} : { opacity: 0, y: 20 }}
             whileInView={reduce ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05]"
           >
             {getPersonalizedGreeting()}
           </motion.h1>
@@ -287,7 +299,7 @@ function Hero({ userProfile }) {
             whileInView={reduce ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-8 flex flex-col sm:flex-row gap-4"
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <a href="#access" onClick={() => smoothForAWhile()} className="btn-link btn-primary">
                 Join the Beta
@@ -353,7 +365,7 @@ function AppDashboardMockup() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="relative mx-auto h-[560px] w-[300px] rounded-[2.2rem] p-[12px] bg-gradient-to-b from-white/15 to-white/8 border border-white/30 shadow-[0_0_80px_-10px_rgba(255,255,255,0.2)] backdrop-blur-3xl ring-1 ring-white/20"
+      className="relative mx-auto h-[400px] w-[280px] sm:h-[480px] sm:w-[300px] md:h-[560px] md:w-[300px] rounded-[2.2rem] p-[8px] sm:p-[12px] bg-gradient-to-b from-white/15 to-white/8 border border-white/30 shadow-[0_0_80px_-10px_rgba(255,255,255,0.2)] backdrop-blur-3xl ring-1 ring-white/20"
     >
       <div className="h-full w-full rounded-[1.8rem] overflow-hidden bg-black/60 ring-1 ring-white/20 backdrop-blur-xl">
         {/* App Header */}
