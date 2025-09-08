@@ -292,20 +292,22 @@ function IntroVideo({ onEnterSite }) {
 
   return (
     <div 
-      className="video-container"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        right: 0,
-        bottom: 0,
         width: '100vw',
         height: '100vh',
         zIndex: 50,
         backgroundColor: 'black',
         overflow: 'hidden',
         margin: 0,
-        padding: 0
+        padding: 0,
+        minWidth: '100vw',
+        minHeight: '100vh',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        border: '5px solid red'
       }}
     >
       <video
@@ -320,6 +322,11 @@ function IntroVideo({ onEnterSite }) {
         style={{
           objectFit: 'cover',
           objectPosition: 'center',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%'
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
