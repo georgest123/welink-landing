@@ -68,15 +68,18 @@ export default function Page() {
         
         /* Ensure full viewport coverage */
         html, body { 
-          width: 100%; 
-          height: 100%; 
+          width: 100vw; 
+          height: 100vh; 
           margin: 0; 
           padding: 0; 
           overflow-x: hidden;
+          position: relative;
         }
         
-        /* Force full viewport coverage for background */
+        /* Remove any default margins/padding that might cause white strips */
         * {
+          margin: 0;
+          padding: 0;
           box-sizing: border-box;
         }
         
@@ -122,7 +125,7 @@ export default function Page() {
         .btn-ghost:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px) scale(1.05); }
       `}</style>
 
-      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white overflow-x-hidden">
+      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white overflow-x-hidden" style={{ margin: 0, padding: 0 }}>
         <PersonalizedBackground userProfile={userProfile} />
         {/* Intro video: left exactly as you had it */}
         <IntroVideo onEnterSite={() => setShowMainSite(true)} />
@@ -144,16 +147,33 @@ export default function Page() {
 
 function PersonalizedBackground() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div 
+      className="fixed -z-10"
+      style={{
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: "100vw",
+        height: "100vh",
+        minWidth: "100vw",
+        minHeight: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <img
         src="/images/background-images/background2.jpg"
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover"
         style={{
-          minWidth: "100vw",
-          minHeight: "100vh",
-          width: "100vw",
-          height: "100vh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+          minWidth: "100%",
+          minHeight: "100%",
         }}
       />
     </div>
