@@ -318,7 +318,6 @@ function IntroVideo({ onEnterSite }) {
         preload="auto"
         onEnded={handleVideoEnd}
         onTimeUpdate={handleVideoTimeUpdate}
-        className="intro-video"
         style={{
           objectFit: 'cover',
           objectPosition: 'center',
@@ -326,7 +325,15 @@ function IntroVideo({ onEnterSite }) {
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%'
+          height: '100%',
+          minWidth: '100%',
+          minHeight: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          // Override mobile CSS rules
+          transform: 'none !important',
+          left: '0 !important',
+          top: '0 !important'
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
