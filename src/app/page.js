@@ -69,6 +69,18 @@ export default function Page() {
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         
+        /* Video container - always full screen */
+        .video-container {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          z-index: 50 !important;
+          background-color: black !important;
+          overflow: hidden !important;
+        }
+        
         /* Video responsiveness for different platforms */
         .intro-video {
           width: 100% !important;
@@ -254,7 +266,7 @@ function IntroVideo({ onEnterSite }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black overflow-hidden">
+    <div className="video-container">
       <video
         ref={videoRef}
         autoPlay
@@ -265,13 +277,8 @@ function IntroVideo({ onEnterSite }) {
         onTimeUpdate={handleVideoTimeUpdate}
         className="intro-video"
         style={{
-          width: '100%',
-          height: '100%',
           objectFit: 'cover',
           objectPosition: 'center',
-          position: 'absolute',
-          top: 0,
-          left: 0,
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
