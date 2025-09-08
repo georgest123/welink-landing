@@ -68,6 +68,33 @@ export default function Page() {
 
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
+        
+        /* Video responsiveness for different platforms */
+        video {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          object-position: center !important;
+        }
+        
+        /* Mobile-specific video optimizations */
+        @media screen and (max-width: 768px) {
+          video {
+            min-width: 100vw;
+            min-height: 100vh;
+            max-width: none;
+            max-height: none;
+          }
+        }
+        
+        /* Landscape orientation fixes */
+        @media screen and (orientation: landscape) {
+          video {
+            width: 100vw !important;
+            height: 100vh !important;
+            object-fit: cover !important;
+          }
+        }
 
         /* Link-as-button utilities */
         .btn-link {
@@ -178,7 +205,8 @@ function IntroVideo({ onEnterSite }) {
       style={{
         position: 'fixed',
         top: 0, left: 0,
-        width: '100vw', height: '100vh',
+        width: '100vw', 
+        height: '100vh',
         overflow: 'hidden'
       }}
     >
@@ -187,18 +215,28 @@ function IntroVideo({ onEnterSite }) {
         autoPlay
         muted
         playsInline
+        preload="auto"
         onEnded={handleVideoEnd}
         onTimeUpdate={handleVideoTimeUpdate}
         className="w-full h-full object-cover"
         style={{
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
+          height: '100%',
           objectFit: 'cover',
+          objectPosition: 'center',
           position: 'absolute',
-          top: 0, left: 0
+          top: 0, 
+          left: 0,
+          // Responsive sizing for different platforms
+          minWidth: '100%',
+          minHeight: '100%',
+          // Ensure coverage on mobile devices
+          maxWidth: 'none',
+          maxHeight: 'none',
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
     </div>
   );
