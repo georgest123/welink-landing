@@ -90,6 +90,7 @@ export default function Page() {
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
+            object-fit: contain !important;
           }
         }
         
@@ -103,6 +104,7 @@ export default function Page() {
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
+            object-fit: contain !important;
           }
         }
         
@@ -116,6 +118,7 @@ export default function Page() {
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
+            object-fit: contain !important;
           }
         }
         
@@ -129,6 +132,7 @@ export default function Page() {
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
+            object-fit: contain !important;
           }
         }
         
@@ -246,7 +250,7 @@ function IntroVideo({ onEnterSite }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-black overflow-hidden flex items-center justify-center">
       <video
         ref={videoRef}
         autoPlay
