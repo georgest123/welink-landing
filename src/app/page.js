@@ -307,7 +307,6 @@ function IntroVideo({ onEnterSite }) {
         minHeight: '100vh',
         maxWidth: '100vw',
         maxHeight: '100vh',
-        border: '5px solid red'
       }}
     >
       <video
@@ -323,14 +322,13 @@ function IntroVideo({ onEnterSite }) {
           objectPosition: 'center',
           position: 'absolute',
           top: '50%',
-          left: '0',
+          left: '50%',
           width: '100%',
           height: '35%',
           minWidth: '100%',
           maxWidth: '100%',
           // Override mobile CSS rules
-          transform: 'translateY(-50%) !important',
-          left: '0 !important'
+          transform: 'translate(-50%, -50%) !important'
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
