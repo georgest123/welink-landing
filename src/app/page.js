@@ -80,13 +80,14 @@ export default function Page() {
           left: 0 !important;
         }
         
-        /* Mobile-specific video optimizations - significantly smaller */
+        /* Mobile-specific video optimizations - keep video small but center in full container */
         @media screen and (max-width: 768px) {
           .intro-video {
             width: 80% !important;
             height: 60% !important;
             max-width: 80% !important;
             max-height: 60% !important;
+            position: absolute !important;
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -101,6 +102,7 @@ export default function Page() {
             height: 50% !important;
             max-width: 70% !important;
             max-height: 50% !important;
+            position: absolute !important;
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -115,6 +117,7 @@ export default function Page() {
             height: 40% !important;
             max-width: 60% !important;
             max-height: 40% !important;
+            position: absolute !important;
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -129,6 +132,7 @@ export default function Page() {
             height: 55% !important;
             max-width: 75% !important;
             max-height: 55% !important;
+            position: absolute !important;
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -250,7 +254,7 @@ function IntroVideo({ onEnterSite }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black overflow-hidden flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-black overflow-hidden">
       <video
         ref={videoRef}
         autoPlay
