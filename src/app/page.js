@@ -325,7 +325,7 @@ function IntroVideo({ onEnterSite }) {
           top: '50%',
           left: '0',
           width: '100%',
-          height: '60%',
+          height: '50%',
           minWidth: '100%',
           maxWidth: '100%',
           // Override mobile CSS rules
