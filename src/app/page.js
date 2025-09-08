@@ -70,39 +70,47 @@ export default function Page() {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         
         /* Video responsiveness for different platforms */
-        video {
-          width: 100% !important;
-          height: 100% !important;
+        .intro-video {
+          width: 100vw !important;
+          height: 100vh !important;
           object-fit: cover !important;
           object-position: center !important;
           position: absolute !important;
-          top: 50% !important;
-          left: 50% !important;
-          transform: translate(-50%, -50%) !important;
+          top: 0 !important;
+          left: 0 !important;
         }
         
         /* Mobile-specific video optimizations */
         @media screen and (max-width: 768px) {
-          video {
+          .intro-video {
             width: 100vw !important;
             height: 100vh !important;
+            max-width: 100vw !important;
+            max-height: 100vh !important;
             min-width: 100vw !important;
             min-height: 100vh !important;
-            max-width: none !important;
-            max-height: none !important;
+          }
+        }
+        
+        /* Extra small mobile devices */
+        @media screen and (max-width: 480px) {
+          .intro-video {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100vw !important;
+            max-height: 100vh !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
           }
         }
         
         /* Landscape orientation fixes */
         @media screen and (orientation: landscape) {
-          video {
+          .intro-video {
             width: 100vw !important;
             height: 100vh !important;
             object-fit: cover !important;
             object-position: center !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
           }
         }
 
@@ -233,22 +241,16 @@ function IntroVideo({ onEnterSite }) {
         preload="auto"
         onEnded={handleVideoEnd}
         onTimeUpdate={handleVideoTimeUpdate}
-        className="w-full h-full object-cover"
+        className="intro-video"
         style={{
-          width: '100%',
-          height: '100%',
+          width: '100vw',
+          height: '100vh',
           objectFit: 'cover',
           objectPosition: 'center',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          // Responsive sizing for different platforms
-          minWidth: '100%',
-          minHeight: '100%',
-          // Ensure coverage on mobile devices
-          maxWidth: 'none',
-          maxHeight: 'none',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+          minWidth: '100vw',
+          minHeight: '100vh',
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
