@@ -80,23 +80,55 @@ export default function Page() {
           left: 0 !important;
         }
         
-        /* Mobile-specific video optimizations */
+        /* Mobile-specific video optimizations - significantly smaller */
         @media screen and (max-width: 768px) {
           .intro-video {
-            width: 100% !important;
-            height: 100% !important;
-            max-width: 100% !important;
-            max-height: 100% !important;
+            width: 80% !important;
+            height: 60% !important;
+            max-width: 80% !important;
+            max-height: 60% !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
         }
         
-        /* Extra small mobile devices */
+        /* Extra small mobile devices - even smaller */
         @media screen and (max-width: 480px) {
           .intro-video {
-            width: 100% !important;
-            height: 100% !important;
-            max-width: 100% !important;
-            max-height: 100% !important;
+            width: 70% !important;
+            height: 50% !important;
+            max-width: 70% !important;
+            max-height: 50% !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+          }
+        }
+        
+        /* Very small mobile devices */
+        @media screen and (max-width: 360px) {
+          .intro-video {
+            width: 60% !important;
+            height: 40% !important;
+            max-width: 60% !important;
+            max-height: 40% !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+          }
+        }
+        
+        /* Portrait orientation - mobile specific */
+        @media screen and (orientation: portrait) and (max-width: 768px) {
+          .intro-video {
+            width: 75% !important;
+            height: 55% !important;
+            max-width: 75% !important;
+            max-height: 55% !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
         }
         
