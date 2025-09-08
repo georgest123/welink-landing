@@ -65,6 +65,15 @@ export default function Page() {
         /* No global smooth scrolling; opt-in via .smooth-scroll */
         html { scroll-padding-top: 96px; }
         .smooth-scroll { scroll-behavior: smooth; }
+        
+        /* Ensure full viewport coverage */
+        html, body { 
+          width: 100%; 
+          height: 100%; 
+          margin: 0; 
+          padding: 0; 
+          overflow-x: hidden;
+        }
 
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -99,7 +108,7 @@ export default function Page() {
         .btn-ghost:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px) scale(1.05); }
       `}</style>
 
-      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white">
+      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white overflow-x-hidden">
         <PersonalizedBackground userProfile={userProfile} />
         {/* Intro video: left exactly as you had it */}
         <IntroVideo onEnterSite={() => setShowMainSite(true)} />
@@ -127,8 +136,14 @@ function PersonalizedBackground() {
       style={{
         backgroundImage: `url('/images/background-images/background2.jpg')`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
+        minWidth: "100vw",
+        minHeight: "100vh",
+        width: "100vw",
+        height: "100vh",
+        // Ensure coverage in landscape mode
+        backgroundAttachment: "scroll",
       }}
     />
   );
