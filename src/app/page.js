@@ -71,8 +71,8 @@ export default function Page() {
         
         /* Video responsiveness for different platforms */
         .intro-video {
-          width: 100vw !important;
-          height: 100vh !important;
+          width: 100% !important;
+          height: 100% !important;
           object-fit: cover !important;
           object-position: center !important;
           position: absolute !important;
@@ -83,32 +83,28 @@ export default function Page() {
         /* Mobile-specific video optimizations */
         @media screen and (max-width: 768px) {
           .intro-video {
-            width: 100vw !important;
-            height: 100vh !important;
-            max-width: 100vw !important;
-            max-height: 100vh !important;
-            min-width: 100vw !important;
-            min-height: 100vh !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
           }
         }
         
         /* Extra small mobile devices */
         @media screen and (max-width: 480px) {
           .intro-video {
-            width: 100vw !important;
-            height: 100vh !important;
-            max-width: 100vw !important;
-            max-height: 100vh !important;
-            min-width: 100vw !important;
-            min-height: 100vh !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
           }
         }
         
         /* Landscape orientation fixes */
         @media screen and (orientation: landscape) {
           .intro-video {
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 100% !important;
+            height: 100% !important;
             object-fit: cover !important;
             object-position: center !important;
           }
@@ -218,21 +214,7 @@ function IntroVideo({ onEnterSite }) {
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black"
-      style={{
-        position: 'fixed',
-        top: 0, left: 0,
-        width: '100vw', 
-        height: '100vh',
-        overflow: 'hidden',
-        // Ensure proper mobile viewport handling
-        minWidth: '100vw',
-        minHeight: '100vh',
-        maxWidth: '100vw',
-        maxHeight: '100vh',
-      }}
-    >
+    <div className="fixed inset-0 z-50 bg-black overflow-hidden">
       <video
         ref={videoRef}
         autoPlay
@@ -243,14 +225,13 @@ function IntroVideo({ onEnterSite }) {
         onTimeUpdate={handleVideoTimeUpdate}
         className="intro-video"
         style={{
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
+          height: '100%',
           objectFit: 'cover',
           objectPosition: 'center',
-          maxWidth: '100vw',
-          maxHeight: '100vh',
-          minWidth: '100vw',
-          minHeight: '100vh',
+          position: 'absolute',
+          top: 0,
+          left: 0,
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
