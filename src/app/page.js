@@ -75,15 +75,21 @@ export default function Page() {
           height: 100% !important;
           object-fit: cover !important;
           object-position: center !important;
+          position: absolute !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
         }
         
         /* Mobile-specific video optimizations */
         @media screen and (max-width: 768px) {
           video {
-            min-width: 100vw;
-            min-height: 100vh;
-            max-width: none;
-            max-height: none;
+            width: 100vw !important;
+            height: 100vh !important;
+            min-width: 100vw !important;
+            min-height: 100vh !important;
+            max-width: none !important;
+            max-height: none !important;
           }
         }
         
@@ -93,6 +99,10 @@ export default function Page() {
             width: 100vw !important;
             height: 100vh !important;
             object-fit: cover !important;
+            object-position: center !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
         }
 
@@ -207,7 +217,12 @@ function IntroVideo({ onEnterSite }) {
         top: 0, left: 0,
         width: '100vw', 
         height: '100vh',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        // Ensure proper mobile viewport handling
+        minWidth: '100vw',
+        minHeight: '100vh',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
       }}
     >
       <video
@@ -225,8 +240,9 @@ function IntroVideo({ onEnterSite }) {
           objectFit: 'cover',
           objectPosition: 'center',
           position: 'absolute',
-          top: 0, 
-          left: 0,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           // Responsive sizing for different platforms
           minWidth: '100%',
           minHeight: '100%',
