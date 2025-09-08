@@ -65,43 +65,6 @@ export default function Page() {
         /* No global smooth scrolling; opt-in via .smooth-scroll */
         html { scroll-padding-top: 96px; }
         .smooth-scroll { scroll-behavior: smooth; }
-        
-        /* Ensure full viewport coverage */
-        html, body { 
-          width: 100vw; 
-          height: 100vh; 
-          margin: 0; 
-          padding: 0; 
-          overflow-x: hidden;
-          position: relative;
-        }
-        
-        /* Remove any default margins/padding that might cause white strips */
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        /* Ensure no white space in landscape */
-        @media screen and (orientation: landscape) {
-          html, body {
-            width: 100vw;
-            height: 100vh;
-            overflow-x: hidden;
-          }
-        }
-        
-        /* Force background to cover entire viewport */
-        .fixed.inset-0 {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
-        }
 
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -136,7 +99,7 @@ export default function Page() {
         .btn-ghost:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px) scale(1.05); }
       `}</style>
 
-      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white overflow-x-hidden" style={{ margin: 0, padding: 0 }}>
+      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white">
         <PersonalizedBackground userProfile={userProfile} />
         {/* Intro video: left exactly as you had it */}
         <IntroVideo onEnterSite={() => setShowMainSite(true)} />
@@ -157,21 +120,15 @@ export default function Page() {
 }
 
 function PersonalizedBackground() {
+  // Remove background-attachment: fixed to avoid mobile jank
   return (
-    <div 
+    <div
       className="fixed inset-0 -z-10"
       style={{
         backgroundImage: `url('/images/background-images/background2.jpg')`,
         backgroundSize: "cover",
-        // Fallback for mobile devices that might not support cover properly
-        backgroundSize: "100% 100%",
-        backgroundPosition: "center center",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        width: "100vw",
-        height: "100vh",
-        minWidth: "100vw",
-        minHeight: "100vh",
       }}
     />
   );
