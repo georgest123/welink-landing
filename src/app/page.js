@@ -874,14 +874,14 @@ function SlowSocialExplainer() {
     <section id="slow" className="relative py-16 md:py-24 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
-            <h3 className="text-2xl md:text-3xl font-semibold text-center mb-6">Slow social, explained</h3>
-            <p className="mt-4 text-white/80 text-lg leading-relaxed text-center mb-8">
+          <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-4 sm:p-6 md:p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-4 sm:mb-6">Slow social, explained</h3>
+            <p className="mt-4 text-white/80 text-base sm:text-lg leading-relaxed text-center mb-6 sm:mb-8">
               WeLink reimagines social connection for the digital age. Instead of broadcasting to the world, 
               you build meaningful relationships in small, trusted circles where authenticity thrives.
             </p>
             
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div className="space-y-4">
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-2">The Problem with Fast Social</h4>
@@ -932,7 +932,7 @@ function SlowSocialExplainer() {
                   sharing moments that are meant to be experienced, not archived or monetized.
                 </p>
                 
-          <div className="mt-6 flex gap-3 text-sm">
+          <div className="mt-4 sm:mt-6 flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm justify-center sm:justify-start">
             <Badge Icon={Sparkles} text="No algorithm" />
             <Badge Icon={Link2} text="Invite-only" />
             <Badge Icon={Shield} text="Privacy-first" />
@@ -940,11 +940,12 @@ function SlowSocialExplainer() {
               </div>
               
               <div className="text-center">
-                <h4 className="text-xl font-semibold text-white mb-6">Inner Circle at your fingertips</h4>
-                <SpiderWeb
-                  size={350}
-                  rings={5}
-                  spokes={12}
+                <h4 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">Inner Circle at your fingertips</h4>
+                <div className="flex justify-center">
+                  <SpiderWeb
+                    size={280}
+                    rings={5}
+                    spokes={12}
                   nodes={[
                     { id: "a", label: "Alina", ring: 2, angleDeg: 10 },
                     { id: "b", label: "Matei", ring: 3, angleDeg: 70 },
@@ -956,6 +957,7 @@ function SlowSocialExplainer() {
                   centerLabel=""
                   onNodeClick={(id) => console.log("clicked", id)}
                 />
+                </div>
               </div>
             </div>
           </div>
