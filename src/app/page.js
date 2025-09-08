@@ -322,18 +322,15 @@ function IntroVideo({ onEnterSite }) {
           objectFit: 'cover',
           objectPosition: 'center',
           position: 'absolute',
-          top: 0,
-          left: 0,
+          top: '50%',
+          left: '0',
           width: '100%',
-          height: '100%',
+          height: '60%',
           minWidth: '100%',
-          minHeight: '100%',
           maxWidth: '100%',
-          maxHeight: '100%',
           // Override mobile CSS rules
-          transform: 'none !important',
-          left: '0 !important',
-          top: '0 !important'
+          transform: 'translateY(-50%) !important',
+          left: '0 !important'
         }}
       >
         <source src="/videos/Intro.mp4" type="video/mp4" />
