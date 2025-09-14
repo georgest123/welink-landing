@@ -451,7 +451,7 @@ function Hero({ userProfile }) {
               className="inline-block hover:scale-105 transition-transform duration-300"
             >
               <Image 
-                src="/images/download-on-the-app-store.svg" 
+                src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" 
                 alt="Download on the App Store" 
                 width={120} 
                 height={40} 
