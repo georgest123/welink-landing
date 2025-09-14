@@ -443,6 +443,22 @@ function Hero({ userProfile }) {
             </a>
           </motion.div>
           <div className="mt-4 text-sm text-white/50">No ads. Disappearing by default. AI as a shield, not a hook.</div>
+          <div className="mt-6 flex justify-center">
+            <a 
+              href="https://apps.apple.com/app/welink" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block hover:scale-105 transition-transform duration-300"
+            >
+              <Image 
+                src="/images/download-on-the-app-store.svg" 
+                alt="Download on the App Store" 
+                width={120} 
+                height={40} 
+                className="h-10 w-auto"
+              />
+            </a>
+          </div>
         </div>
 
         <div className="relative">
