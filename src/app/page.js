@@ -461,8 +461,15 @@ function Hero({ userProfile }) {
           </div>
         </div>
 
-        <div className="relative">
-          <AppDashboardMockup />
+        <div className="relative flex justify-center md:justify-end">
+          <Image
+            src="/images/feature-images/Hero.png"
+            alt="WeLink"
+            width={400}
+            height={600}
+            className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] h-auto rounded-2xl shadow-2xl"
+            priority
+          />
         </div>
       </div>
     </section>
