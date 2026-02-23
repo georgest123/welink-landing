@@ -351,7 +351,7 @@ function NavBar() {
           <div className="rounded-2xl sm:rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-white/10 w-full max-w-[1200px] sm:max-w-[1500px]">
             <div className="px-6 py-4 flex items-center justify-between">
               <a href="#top" onClick={() => smoothForAWhile()} className="flex items-center">
-                <Image src="/images/logo.png" alt="WeLink Logo" width={200} height={50} className="w-32 sm:w-40 md:w-48 h-auto" />
+                <Image src="/images/WeLink%20New%20x3.png" alt="WeLink Logo" width={200} height={50} className="w-32 sm:w-40 md:w-48 h-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {items.map((it) => (
@@ -521,7 +521,7 @@ function AppDashboardMockup() {
         {/* App Header */}
         <div className="h-14 w-full backdrop-blur-xl bg-white/10 border-b border-white/20 flex items-center justify-between px-4 sticky top-0 z-10">
           <div />
-          <Image src="/images/logo.png" alt="WeLink Logo" width={80} height={20} className="w-auto h-auto" />
+          <Image src="/images/WeLink%20New%20x3.png" alt="WeLink Logo" width={80} height={20} className="w-auto h-auto" />
           <div className="flex items-center justify-center w-6 h-6">
             {showNotification && (
               <motion.div
@@ -1184,7 +1184,7 @@ function Footer() {
     <footer className="relative border-t border-white/20 backdrop-blur-xl bg-black/20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <Image src="/images/logo.png" alt="WeLink Logo" width={150} height={40} className="w-auto h-auto" />
+          <Image src="/images/WeLink%20New%20x3.png" alt="WeLink Logo" width={150} height={40} className="w-auto h-auto" />
           <span className="text-white/60 text-sm">© {new Date().getFullYear()}</span>
         </div>
         <div className="text-white/70 text-sm font-medium">Built for people, not algorithms.</div>
