@@ -465,9 +465,9 @@ function Hero({ userProfile }) {
           <Image
             src="/images/feature-images/Hero.png"
             alt="WeLink"
-            width={400}
-            height={600}
-            className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] h-auto rounded-2xl shadow-2xl"
+            width={520}
+            height={780}
+            className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[520px] h-auto rounded-2xl shadow-2xl"
             priority
           />
         </div>
