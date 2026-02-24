@@ -1133,45 +1133,125 @@ function Badge({ Icon, text }) {
   );
 }
 
+const FORMSPREE_BETA_ID = process.env.NEXT_PUBLIC_FORMSPREE_BETA_ID || "";
+const FORMSPREE_WAITLIST_ID = process.env.NEXT_PUBLIC_FORMSPREE_WAITLIST_ID || "";
+
 function BetaAndReserve() {
+  const [betaStatus, setBetaStatus] = useState({ state: "idle", message: "" });
+  const [waitlistStatus, setWaitlistStatus] = useState({ state: "idle", message: "" });
+
+  const handleBetaSubmit = async (e) => {
+    e.preventDefault();
+    if (!FORMSPREE_BETA_ID) {
+      setBetaStatus({ state: "error", message: "Form not configured. Add NEXT_PUBLIC_FORMSPREE_BETA_ID." });
+      return;
+    }
+    const form = e.target;
+    const email = form.email?.value?.trim();
+    if (!email) return;
+    setBetaStatus({ state: "loading", message: "" });
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_BETA_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _subject: "WeLink Beta request" }),
+      });
+      if (res.ok) {
+        setBetaStatus({ state: "success", message: "Thanks! We'll be in touch." });
+        form.reset();
+      } else {
+        setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
+      }
+    } catch {
+      setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
+    }
+  };
+
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault();
+    if (!FORMSPREE_WAITLIST_ID) {
+      setWaitlistStatus({ state: "error", message: "Form not configured. Add NEXT_PUBLIC_FORMSPREE_WAITLIST_ID." });
+      return;
+    }
+    const form = e.target;
+    const email = form.email?.value?.trim();
+    if (!email) return;
+    setWaitlistStatus({ state: "loading", message: "" });
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_WAITLIST_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _subject: "WeLink Waitlist signup" }),
+      });
+      if (res.ok) {
+        setWaitlistStatus({ state: "success", message: "You're on the list!" });
+        form.reset();
+      } else {
+        setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
+      }
+    } catch {
+      setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
+    }
+  };
+
   return (
     <section id="access" className="relative py-16 md:py-24 scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
         <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
           <h3 className="text-2xl md:text-3xl font-semibold">Join the private beta</h3>
           <p className="mt-3 text-white/80">Get early access and help shape the first slow social app.</p>
-          <form className="mt-6 flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="mt-6 flex flex-col sm:flex-row gap-4" onSubmit={handleBetaSubmit}>
             <input
+              name="email"
               type="email"
               required
               placeholder="you@cosy.space"
               className="flex-1 h-12 min-h-[3rem] rounded-2xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
               style={{ minHeight: '48px', height: '48px' }}
+              disabled={betaStatus.state === "loading"}
             />
-            <button className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium"
-              style={{ minHeight: '48px', height: '48px' }}>
-              Request invite
+            <button
+              type="submit"
+              className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
+              style={{ minHeight: '48px', height: '48px' }}
+            >
+              {betaStatus.state === "loading" ? "Sending…" : "Request invite"}
             </button>
           </form>
+          {betaStatus.message && (
+            <p className={`mt-3 text-sm ${betaStatus.state === "error" ? "text-red-300" : "text-green-300"}`}>
+              {betaStatus.message}
+            </p>
+          )}
           <p className="mt-3 text-sm text-white/70">We&apos;ll only email you about beta access.</p>
         </div>
 
         <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
           <h3 className="text-2xl md:text-3xl font-semibold">Join the waiting list</h3>
           <p className="mt-3 text-white/80">Be first to know when WeLink launches. Get exclusive early access.</p>
-          <form className="mt-6 flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="mt-6 flex flex-col sm:flex-row gap-4" onSubmit={handleWaitlistSubmit}>
             <input
+              name="email"
               type="email"
               placeholder="your@email.com"
               required
               className="flex-1 h-12 min-h-[3rem] rounded-2xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
               style={{ minHeight: '48px', height: '48px' }}
+              disabled={waitlistStatus.state === "loading"}
             />
-            <button className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium"
-              style={{ minHeight: '48px', height: '48px' }}>
-              Join List
+            <button
+              type="submit"
+              className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
+              style={{ minHeight: '48px', height: '48px' }}
+            >
+              {waitlistStatus.state === "loading" ? "Sending…" : "Join List"}
             </button>
           </form>
+          {waitlistStatus.message && (
+            <p className={`mt-3 text-sm ${waitlistStatus.state === "error" ? "text-red-300" : "text-green-300"}`}>
+              {waitlistStatus.message}
+            </p>
+          )}
           <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
             {["Early access priority", "Exclusive launch updates", "Founder community access", "No spam, ever"].map((b) => (
               <li key={b} className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur-xl ring-1 ring-white/10 shadow-lg flex items-center gap-3">
