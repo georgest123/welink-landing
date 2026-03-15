@@ -187,13 +187,13 @@ export default function Page() {
           }
         }
 
-        /* Link-as-button utilities */
+        /* Link-as-button utilities - Apple-style radius */
         .btn-link {
           display: inline-block;
           height: 44px;
           line-height: 44px;
           padding: 0 20px;
-          border-radius: 0.875rem;
+          border-radius: 1rem;
           transition: transform 0.3s, background-color 0.3s;
           box-shadow: 0 8px 16px rgba(0,0,0,0.25);
           -webkit-backdrop-filter: blur(6px);
@@ -207,7 +207,7 @@ export default function Page() {
             height: 48px;
             line-height: 48px;
             padding: 0 24px;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             font-size: 16px;
           }
         }
@@ -348,7 +348,7 @@ function NavBar() {
     <div className="sticky top-4 z-30 w-full flex justify-center">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-center">
-          <div className="rounded-2xl sm:rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-white/10 w-full max-w-[1200px] sm:max-w-[1500px]">
+          <div className="rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] ring-1 ring-white/10 w-full max-w-[1200px] sm:max-w-[1500px]">
             <div className="px-6 py-4 flex items-center justify-between">
               <a href="#top" onClick={() => smoothForAWhile()} className="flex items-center">
                 <Image src="/images/InLoop.png" alt="InLoop Logo" width={200} height={50} className="w-32 sm:w-40 md:w-48 h-auto" />
@@ -467,7 +467,7 @@ function Hero({ userProfile }) {
             alt="InLoop"
             width={520}
             height={780}
-            className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[520px] h-auto rounded-2xl shadow-2xl"
+            className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[520px] h-auto rounded-3xl shadow-2xl"
             priority
           />
         </div>
@@ -808,7 +808,7 @@ function InteractiveCard({ title, subtitle, glow = false, onClick, isActive, has
           : "0 0 20px -5px rgba(0,0,0,0.3)",
       }}
       transition={{ duration: 0.2 }}
-      className="relative rounded-2xl border border-white/20 p-4 backdrop-blur-xl bg-white/10 ring-1 ring-white/10 cursor-pointer overflow-hidden"
+      className="relative rounded-3xl border border-white/20 p-4 backdrop-blur-xl bg-white/10 ring-1 ring-white/10 cursor-pointer overflow-hidden"
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -833,13 +833,13 @@ function InteractiveCard({ title, subtitle, glow = false, onClick, isActive, has
       <div className="relative z-10">
         <div className="text-[13px] text-white/70">{subtitle}</div>
         <div className="mt-1 text-white font-semibold">{title}</div>
-        <div className="mt-3 h-24 w-full rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm relative overflow-hidden">
+        <div className="mt-3 h-24 w-full rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm relative overflow-hidden">
           <MiniSpiderWeb type={type} isInView={isInView} />
         </div>
       </div>
 
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0"
+        className="absolute inset-0 rounded-3xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0"
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       />
@@ -872,7 +872,7 @@ function SpiderWebConnectionCard({ title, subtitle, onClick, isActive, isInView 
         boxShadow: isActive ? "0 0 30px -5px rgba(255,255,255,0.9)" : "0 0 20px -5px rgba(0,0,0,0.3)",
       }}
       transition={{ duration: 0.2 }}
-      className="relative rounded-2xl border border-white/20 p-4 backdrop-blur-xl bg-white/10 ring-1 ring-white/10 cursor-pointer overflow-hidden"
+      className="relative rounded-3xl border border-white/20 p-4 backdrop-blur-xl bg-white/10 ring-1 ring-white/10 cursor-pointer overflow-hidden"
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -891,7 +891,7 @@ function SpiderWebConnectionCard({ title, subtitle, onClick, isActive, isInView 
         <div className="text-[13px] text-white/70">{subtitle}</div>
         <div className="mt-1 text-white font-semibold">{title}</div>
 
-        <div className="mt-3 h-24 w-full rounded-xl bg-gradient-to-br from-white/30 to-white/20 backdrop-blur-sm relative overflow-hidden">
+        <div className="mt-3 h-24 w-full rounded-2xl bg-gradient-to-br from-white/30 to-white/20 backdrop-blur-sm relative overflow-hidden">
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
             <motion.line x1="50" y1="10" x2="50" y2="90" stroke="url(#webGradient)" strokeWidth="0.5" opacity="0.6"
               initial={{ pathLength: 0 }} animate={isInView ? { pathLength: 1 } : { pathLength: 0 }} transition={{ duration: 2, delay: 0.2 }} />
@@ -967,7 +967,7 @@ function SpiderWebConnectionCard({ title, subtitle, onClick, isActive, isInView 
       </div>
 
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0"
+        className="absolute inset-0 rounded-3xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0"
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       />
@@ -981,7 +981,7 @@ function TrustStrip() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-white/70 text-sm">
         {items.map((t) => (
-          <div key={t} className="rounded-2xl border border-white/20 px-4 py-4 bg-white/10 backdrop-blur-xl ring-1 ring-white/10 shadow-lg hover:scale-105 transition-all duration-300">
+          <div key={t} className="rounded-3xl border border-white/20 px-4 py-4 bg-white/10 backdrop-blur-xl ring-1 ring-white/10 shadow-lg hover:scale-105 transition-all duration-300">
             {t}
           </div>
         ))}
@@ -1011,9 +1011,9 @@ function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-6 ring-1 ring-white/10 shadow-lg hover:scale-105 transition-all duration-300"
+              className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-6 ring-1 ring-white/10 shadow-lg hover:scale-105 transition-all duration-300"
             >
-              <div className="h-12 w-12 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg ring-1 ring-white/20">
+              <div className="h-12 w-12 rounded-3xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg ring-1 ring-white/20">
                 <f.icon className="h-6 w-6 text-white" />
               </div>
               <div className="mt-5 font-semibold text-lg">{f.title}</div>
@@ -1126,7 +1126,7 @@ function SlowSocialExplainer() {
 
 function Badge({ Icon, text }) {
   return (
-    <div className="inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
+    <div className="inline-flex items-center gap-3 rounded-3xl border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
       <Icon className="h-4 w-4 text-white" />
       <span className="text-sm font-medium">{text}</span>
     </div>
@@ -1206,13 +1206,13 @@ function BetaAndReserve() {
               type="email"
               required
               placeholder="you@cosy.space"
-              className="flex-1 h-12 min-h-[3rem] rounded-2xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
+              className="flex-1 h-12 min-h-[3rem] rounded-3xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
               style={{ minHeight: '48px', height: '48px' }}
               disabled={betaStatus.state === "loading"}
             />
             <button
               type="submit"
-              className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
+              className="h-12 min-h-[3rem] rounded-3xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
               style={{ minHeight: '48px', height: '48px' }}
             >
               {betaStatus.state === "loading" ? "Sending…" : "Request invite"}
@@ -1235,13 +1235,13 @@ function BetaAndReserve() {
               type="email"
               placeholder="your@email.com"
               required
-              className="flex-1 h-12 min-h-[3rem] rounded-2xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
+              className="flex-1 h-12 min-h-[3rem] rounded-3xl bg-white/15 border border-white/30 px-4 placeholder:text-white/60 outline-none backdrop-blur-sm focus:ring-2 focus:ring-white/50"
               style={{ minHeight: '48px', height: '48px' }}
               disabled={waitlistStatus.state === "loading"}
             />
             <button
               type="submit"
-              className="h-12 min-h-[3rem] rounded-2xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
+              className="h-12 min-h-[3rem] rounded-3xl px-8 bg-white/95 text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg backdrop-blur-sm font-medium disabled:opacity-70 disabled:pointer-events-none"
               style={{ minHeight: '48px', height: '48px' }}
             >
               {waitlistStatus.state === "loading" ? "Sending…" : "Join List"}
@@ -1254,7 +1254,7 @@ function BetaAndReserve() {
           )}
           <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
             {["Early access priority", "Exclusive launch updates", "Founder community access", "No spam, ever"].map((b) => (
-              <li key={b} className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur-xl ring-1 ring-white/10 shadow-lg flex items-center gap-3">
+              <li key={b} className="rounded-3xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur-xl ring-1 ring-white/10 shadow-lg flex items-center gap-3">
                 <span className="inline-block h-2 w-2 rounded-full bg-white/80 shadow-sm" />
                 <span className="text-white/90 font-medium">{b}</span>
               </li>
