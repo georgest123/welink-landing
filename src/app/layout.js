@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "InLoop - Slow Social App",
-  description: "The world's first slow social app. Safe, cosy, and algorithm-free.",
+  title: "InLoop — Real relationships, not algorithmic feeds",
+  description: "A slower, more intentional social network built around trusted circles, private sharing, and meaningful communities.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
