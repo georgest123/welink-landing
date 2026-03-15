@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "WeLink - Slow Social App",
+  title: "InLoop - Slow Social App",
   description: "The world's first slow social app. Safe, cosy, and algorithm-free.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };

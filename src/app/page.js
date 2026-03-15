@@ -445,7 +445,7 @@ function Hero({ userProfile }) {
           <div className="mt-4 text-sm text-white/50">No ads. Disappearing by default. AI as a shield, not a hook.</div>
           <div className="mt-6">
             <a 
-              href="https://apps.apple.com/app/welink" 
+              href="https://apps.apple.com/app/inloop" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block hover:scale-105 transition-transform duration-300"
@@ -463,8 +463,8 @@ function Hero({ userProfile }) {
 
         <div className="relative flex justify-center md:justify-end">
           <Image
-            src="/images/feature-images/Hero.png"
-            alt="WeLink"
+            src="/images/feature-images/hero2.PNG"
+            alt="InLoop"
             width={520}
             height={780}
             className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[520px] h-auto rounded-2xl shadow-2xl"
@@ -1034,7 +1034,7 @@ function SlowSocialExplainer() {
           <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-4 sm:p-6 md:p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-4 sm:mb-6">Slow social, explained</h3>
             <p className="mt-4 text-white/80 text-base sm:text-lg leading-relaxed text-center mb-6 sm:mb-8">
-              WeLink reimagines social connection for the digital age. Instead of broadcasting to the world, 
+              InLoop reimagines social connection for the digital age. Instead of broadcasting to the world, 
               you build meaningful relationships in small, trusted circles where authenticity thrives.
             </p>
             
@@ -1063,7 +1063,7 @@ function SlowSocialExplainer() {
                 </div>
                 
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">The WeLink Solution</h4>
+                  <h4 className="text-lg font-semibold text-white mb-2">The InLoop Solution</h4>
                   <ul className="space-y-2 text-white/70 text-sm">
                     <li className="flex items-start gap-2">
                       <span className="text-green-400 mt-1">✓</span>
@@ -1154,7 +1154,7 @@ function BetaAndReserve() {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_BETA_ID}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, _subject: "WeLink Beta request" }),
+        body: JSON.stringify({ email, _subject: "InLoop Beta request" }),
       });
       if (res.ok) {
         setBetaStatus({ state: "success", message: "Thanks! We'll be in touch." });
@@ -1181,7 +1181,7 @@ function BetaAndReserve() {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_WAITLIST_ID}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, _subject: "WeLink Waitlist signup" }),
+        body: JSON.stringify({ email, _subject: "InLoop Waitlist signup" }),
       });
       if (res.ok) {
         setWaitlistStatus({ state: "success", message: "You're on the list!" });
@@ -1228,7 +1228,7 @@ function BetaAndReserve() {
 
         <div className="rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/8 p-8 backdrop-blur-xl ring-1 ring-white/10 shadow-lg">
           <h3 className="text-2xl md:text-3xl font-semibold">Join the waiting list</h3>
-          <p className="mt-3 text-white/80">Be first to know when WeLink launches. Get exclusive early access.</p>
+          <p className="mt-3 text-white/80">Be first to know when InLoop launches. Get exclusive early access.</p>
           <form className="mt-6 flex flex-col sm:flex-row gap-4" onSubmit={handleWaitlistSubmit}>
             <input
               name="email"
