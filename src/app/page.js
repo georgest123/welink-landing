@@ -217,17 +217,14 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
-              <Image
-                src="/images/feature-images/hero2.PNG"
-                alt="InLoop app"
-                width={320}
-                height={480}
-                className="w-full h-auto rounded-3xl shadow-2xl ring-1 ring-white/10"
-                priority
-              />
-              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-white/10 to-white/5 blur-2xl" />
-            </div>
+            <Image
+              src="/images/feature-images/hero2.PNG"
+              alt="InLoop app"
+              width={520}
+              height={780}
+              className="w-full max-w-[360px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[540px] h-auto"
+              priority
+            />
           </motion.div>
         </div>
       </div>
