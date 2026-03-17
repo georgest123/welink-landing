@@ -77,6 +77,8 @@ export default function Page() {
   );
 }
 
+const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
+
 function PersonalizedBackground() {
   return (
     <div
@@ -205,7 +207,7 @@ function Hero() {
               </a>
             </motion.div>
             <div className="mt-8">
-              <a href="https://apps.apple.com/app/inloop" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity">
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity">
                 <Image src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store" width={140} height={44} className="h-11 w-auto" />
               </a>
             </div>
