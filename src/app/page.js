@@ -662,7 +662,12 @@ function Footer() {
           <Image src="/images/InLoop.png" alt="InLoop" width={120} height={32} className="h-7 w-auto" />
           <span className="text-white/50 text-sm">© {new Date().getFullYear()}</span>
         </div>
-        <p className="text-white/55 text-sm">A slower, more intentional way to connect.</p>
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+          <a href="/privacy" className="text-white/55 text-sm hover:text-white/85 transition-colors">
+            Privacy Policy
+          </a>
+          <p className="text-white/55 text-sm">A slower, more intentional way to connect.</p>
+        </div>
       </div>
     </footer>
   );
