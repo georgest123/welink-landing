@@ -666,6 +666,9 @@ function Footer() {
           <a href="/privacy" className="text-white/55 text-sm hover:text-white/85 transition-colors">
             Privacy Policy
           </a>
+          <a href="/child-safety" className="text-white/55 text-sm hover:text-white/85 transition-colors">
+            Child Safety
+          </a>
           <p className="text-white/55 text-sm">A slower, more intentional way to connect.</p>
         </div>
       </div>
