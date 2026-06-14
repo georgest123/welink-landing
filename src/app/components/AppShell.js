@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
+const APP_STORE_URL =
+  process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/gb/app/inloop-app/id6759622200";
 const PLAY_STORE_URL =
   process.env.NEXT_PUBLIC_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=app.inloop";
 
@@ -81,9 +82,15 @@ export function DownloadBadges({ className = "" }) {
         href={PLAY_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="glass-button-ghost h-11 px-5 text-sm"
+        className="inline-block transition-opacity hover:opacity-90"
       >
-        Get it on Google Play
+        <Image
+          src="/images/feature-images/Get_it_on_Google_Play_Badge.png"
+          alt="Get it on Google Play"
+          width={140}
+          height={46}
+          className="h-11 w-auto"
+        />
       </a>
     </div>
   );
