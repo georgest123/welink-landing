@@ -13,18 +13,14 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "InLoop — Real relationships, not algorithmic feeds",
-  description: "A slower, more intentional social network built around trusted circles, private sharing, and meaningful communities.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  description:
+    "A slower, wallpaper-first social app for trusted circles, private sharing, chat, calls, and events.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

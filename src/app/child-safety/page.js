@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SiteHeader, WallpaperBackground } from "../components/AppShell";
 
 export const metadata = {
   title: "Child Safety Standards — InLoop",
@@ -10,28 +10,11 @@ export const metadata = {
 export default function ChildSafetyPage() {
   return (
     <div className="relative min-h-screen w-full text-white">
-      <div
-        className="fixed inset-0 -z-10"
-        style={{
-          backgroundImage: `url('/images/background-images/background2.jpg')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      <header className="sticky top-0 z-20 border-b border-white/15 bg-black/30 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <Link href="/" className="flex items-center shrink-0 hover:opacity-90 transition-opacity">
-            <Image src="/images/InLoop.png" alt="InLoop" width={120} height={32} className="h-7 w-auto sm:h-8" />
-          </Link>
-          <Link href="/" className="text-sm text-white/70 hover:text-white transition-colors">
-            ← Back to home
-          </Link>
-        </div>
-      </header>
+      <WallpaperBackground />
+      <SiteHeader compact />
 
       <main className="relative z-10 mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
-        <article className="rounded-3xl border border-white/15 bg-black/35 backdrop-blur-md px-5 py-8 sm:px-8 sm:py-10 shadow-xl">
+        <article className="glass-panel px-5 py-8 sm:px-8 sm:py-10">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">InLoop Child Safety Standards</h1>
           <p className="mt-3 text-sm text-white/60">
             <strong className="font-medium text-white/75">Effective date:</strong> June 13, 2026

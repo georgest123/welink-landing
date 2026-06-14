@@ -1,10 +1,25 @@
-// src/app/page.js
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Shield, Users, CircleDot, Map, Calendar, Lock, Sparkles, Link2, EyeOff } from "lucide-react";
+import {
+  Calendar,
+  CircleDot,
+  EyeOff,
+  Lock,
+  Map,
+  MessageCircle,
+  Shield,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  GlassPanel,
+  SiteFooter,
+  SiteHeader,
+  WallpaperBackground,
+} from "./components/AppShell";
 import SpiderWeb from "./components/SpiderWeb";
 
 function smoothForAWhile(ms = 400) {
@@ -14,9 +29,11 @@ function smoothForAWhile(ms = 400) {
   html._smoothTO = setTimeout(() => html.classList.remove("smooth-scroll"), ms);
 }
 
-export default function Page() {
-  const [showMainSite, setShowMainSite] = useState(false);
+const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
+const FORMSPREE_BETA_ID = process.env.NEXT_PUBLIC_FORMSPREE_BETA_ID || "";
+const FORMSPREE_WAITLIST_ID = process.env.NEXT_PUBLIC_FORMSPREE_WAITLIST_ID || "";
 
+export default function Page() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     try {
@@ -25,144 +42,20 @@ export default function Page() {
   }, []);
 
   return (
-    <>
-      <style jsx global>{`
-        html { scroll-padding-top: 96px; }
-        .smooth-scroll { scroll-behavior: smooth; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .video-container {
-          position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-          width: 100% !important; height: 100% !important; z-index: 50 !important; background-color: black !important;
-          overflow: hidden !important; margin: 0 !important; padding: 0 !important;
-          min-width: 100vw !important; min-height: 100vh !important; max-width: 100vw !important; max-height: 100vh !important;
-        }
-        @media screen and (max-width: 768px) {
-          .intro-video { width: 80% !important; height: 60% !important; position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; object-fit: contain !important; }
-        }
-        @media screen and (orientation: landscape) {
-          .intro-video { width: 100% !important; height: 100% !important; object-fit: cover !important; }
-        }
-        .btn-link {
-          display: inline-block; height: 44px; line-height: 44px; padding: 0 20px; border-radius: 1rem;
-          transition: transform 0.2s, background-color 0.2s; font-size: 14px; text-align: center;
-        }
-        @media (min-width: 640px) {
-          .btn-link { height: 48px; line-height: 48px; padding: 0 24px; border-radius: 1.25rem; font-size: 16px; }
-        }
-        .btn-primary { background: rgba(255,255,255,0.96); color: #0a0a0a; }
-        .btn-primary:hover { background: #fff; transform: translateY(-1px); }
-        .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
-        .btn-ghost:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
-      `}</style>
-
-      <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white">
-        <PersonalizedBackground />
-        <IntroVideo onEnterSite={() => setShowMainSite(true)} />
-        <div className={showMainSite ? "block" : "hidden"}>
-          <NavBar />
-          <main className="relative z-10">
-            <Hero />
-            <WhyInLoop />
-            <USPFeatures />
-            <DesignedAroundRelationships />
-            <ProductPreview />
-            <TrustSection />
-            <BetaAndReserve />
-            <Footer />
-          </main>
-        </div>
-      </div>
-    </>
-  );
-}
-
-const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
-
-function PersonalizedBackground() {
-  return (
-    <div
-      className="fixed inset-0 -z-10"
-      style={{
-        backgroundImage: `url('/images/background-images/background2.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    />
-  );
-}
-
-function IntroVideo({ onEnterSite }) {
-  const [showVideo, setShowVideo] = useState(true);
-  const videoRef = useRef(null);
-
-  const handleVideoEnd = () => {
-    try {
-      const html = document.documentElement;
-      const prev = html.style.scrollBehavior;
-      html.style.scrollBehavior = "auto";
-      window.scrollTo(0, 0);
-      html.style.scrollBehavior = prev || "";
-    } catch {}
-    onEnterSite();
-    setShowVideo(false);
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current && videoRef.current.currentTime >= videoRef.current.duration - 3) {
-      videoRef.current.pause();
-      handleVideoEnd();
-    }
-  };
-
-  if (!showVideo) return null;
-
-  return (
-    <div className="fixed inset-0 w-full h-full z-50 bg-black overflow-hidden" style={{ minWidth: "100vw", minHeight: "100vh" }}>
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        onEnded={handleVideoEnd}
-        onTimeUpdate={handleTimeUpdate}
-        className="intro-video absolute top-1/2 left-1/2 w-full max-w-full -translate-x-1/2 -translate-y-1/2"
-        style={{ objectFit: "cover", height: "35%" }}
-      >
-        <source src="/videos/Intro.mp4" type="video/mp4" />
-      </video>
+    <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white">
+      <WallpaperBackground />
+      <SiteHeader />
+      <main className="relative z-10">
+        <Hero />
+        <WhyInLoop />
+        <Features />
+        <RelationshipMap />
+        <ProductPreview />
+        <TrustSection />
+        <AccessSection />
+        <Footer />
+      </main>
     </div>
-  );
-}
-
-function NavBar() {
-  const items = [
-    { label: "Why InLoop", href: "#why" },
-    { label: "How it works", href: "#features" },
-    { label: "Product", href: "#product" },
-    { label: "Trust", href: "#trust" },
-    { label: "Get Access", href: "#access" },
-  ];
-  return (
-    <nav className="sticky top-4 z-30 w-full flex justify-center px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-lg flex items-center justify-between px-6 py-4">
-        <a href="#top" onClick={() => smoothForAWhile()} className="flex items-center shrink-0">
-          <Image src="/images/InLoop.png" alt="InLoop" width={160} height={40} className="h-8 w-auto sm:h-9" />
-        </a>
-        <div className="hidden md:flex items-center gap-8 text-sm">
-          {items.map((it) => (
-            <a key={it.href} href={it.href} onClick={() => smoothForAWhile()} className="text-white/80 hover:text-white transition-colors">
-              {it.label}
-            </a>
-          ))}
-        </div>
-        <a href="#access" onClick={() => smoothForAWhile()} className="btn-link btn-primary shrink-0 hidden sm:inline-block">
-          Get early access
-        </a>
-      </div>
-    </nav>
   );
 }
 
@@ -170,65 +63,101 @@ function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative scroll-mt-24 pt-20 sm:pt-24 md:pt-32 pb-16 md:pb-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <motion.h1
-              initial={reduce ? {} : { opacity: 0, y: 16 }}
-              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.12]"
-            >
-              Real relationships, not algorithmic feeds.
-            </motion.h1>
-            <motion.p
-              initial={reduce ? {} : { opacity: 0, y: 16 }}
-              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.06 }}
-              className="mt-5 text-lg text-white/75 max-w-lg leading-relaxed"
-            >
-              InLoop is a slower, more intentional social network built around trusted circles, private sharing, and meaningful communities — not likes, followers, or feed traps.
-            </motion.p>
-            <motion.div
-              initial={reduce ? {} : { opacity: 0, y: 16 }}
-              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-8 flex flex-col sm:flex-row gap-3"
-            >
-              <a href="#access" onClick={() => smoothForAWhile()} className="btn-link btn-primary">
-                Join the beta
-              </a>
-              <a href="#features" onClick={() => smoothForAWhile()} className="btn-link btn-ghost">
-                Explore how it works
-              </a>
-            </motion.div>
-            <div className="mt-8">
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity">
-                <Image src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store" width={140} height={44} className="h-11 w-auto" />
-              </a>
-            </div>
-          </div>
+    <section id="top" className="scroll-mt-24 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 md:pb-24 md:pt-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
           <motion.div
-            initial={reduce ? {} : { opacity: 0, y: 24 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative flex justify-center lg:justify-end"
+            initial={reduce ? {} : { opacity: 0, y: 12 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="flex justify-center lg:justify-start"
           >
             <Image
-              src="/images/feature-images/hero2.PNG"
-              alt="InLoop app"
-              width={520}
-              height={780}
-              className="w-full max-w-[360px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[540px] h-auto"
+              src="/images/simplelogox1.png"
+              alt="InLoop"
+              width={180}
+              height={54}
+              className="h-12 w-auto sm:h-14"
               priority
             />
           </motion.div>
+          <motion.p
+            initial={reduce ? {} : { opacity: 0, y: 12 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.04 }}
+            className="mt-6 text-sm font-medium uppercase tracking-[0.24em] text-white/55"
+          >
+            Slow social, by design
+          </motion.p>
+          <motion.h1
+            initial={reduce ? {} : { opacity: 0, y: 16 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="mt-4 text-[2rem] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
+          >
+            Real relationships, not algorithmic feeds.
+          </motion.h1>
+          <motion.p
+            initial={reduce ? {} : { opacity: 0, y: 16 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            className="mt-5 max-w-lg text-base leading-relaxed text-white/72 sm:text-lg"
+          >
+            InLoop is a wallpaper-first social app for trusted circles, private sharing, chat, calls, and events — without likes, follower pressure, or feed traps.
+          </motion.p>
+          <motion.div
+            initial={reduce ? {} : { opacity: 0, y: 16 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start"
+          >
+            <a href="#access" onClick={() => smoothForAWhile()} className="glass-button-primary">
+              Join the beta
+            </a>
+            <a href="#features" onClick={() => smoothForAWhile()} className="glass-button-ghost">
+              Explore features
+            </a>
+          </motion.div>
+          <motion.div
+            initial={reduce ? {} : { opacity: 0, y: 12 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-8 flex justify-center lg:justify-start"
+          >
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block transition-opacity hover:opacity-90"
+            >
+              <Image
+                src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg"
+                alt="Download on the App Store"
+                width={140}
+                height={44}
+                className="h-11 w-auto"
+              />
+            </a>
+          </motion.div>
         </div>
+
+        <motion.div
+          initial={reduce ? {} : { opacity: 0, y: 24 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.12 }}
+          className="flex justify-center"
+        >
+          <GlassPanel className="inline-flex p-3 sm:p-4">
+            <Image
+              src="/images/feature-images/hero2.PNG"
+              alt="InLoop app preview"
+              width={520}
+              height={780}
+              className="h-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px]"
+              priority
+            />
+          </GlassPanel>
+        </motion.div>
       </div>
     </section>
   );
@@ -238,114 +167,90 @@ function WhyInLoop() {
   const reduce = useReducedMotion();
   const problems = [
     "Endless feeds designed to keep you scrolling",
-    "Everyone flattened into one audience",
+    "Everyone flattened into one public audience",
     "Performance anxiety and follower-count culture",
     "Privacy erosion and data exploitation",
-    "Algorithmic manipulation instead of real connection",
   ];
   const approach = [
-    "Structure your relationships into meaningful circles",
+    "Structure relationships into meaningful circles",
     "Share with who matters, not with everyone",
-    "No feed traps, no vanity metrics, no pressure to perform",
-    "Privacy-first by design — no public search, intentional sharing",
-    "Communities and events that create real-world value",
+    "No feed traps, vanity metrics, or pressure to perform",
+    "Privacy-first by design with intentional sharing",
   ];
 
   return (
-    <section id="why" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-center"
-        >
-          Why InLoop exists
-        </motion.h2>
-        <motion.p
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 }}
-          className="mt-4 text-center text-white/75 max-w-2xl mx-auto leading-relaxed"
-        >
-          Most social platforms treat connection as a product to optimise. InLoop is built around how people actually relate: in circles, with intention, and without extraction.
-        </motion.p>
-        <div className="mt-16 grid md:grid-cols-2 gap-12 md:gap-16">
-          <div>
-            <h3 className="text-lg font-semibold text-white/90 mb-4">The problem with modern social</h3>
-            <ul className="space-y-3 text-white/65 text-sm leading-relaxed">
-              {problems.map((p, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="text-red-400/80 shrink-0 mt-0.5">×</span>
-                  <span>{p}</span>
+    <section id="why" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          reduce={reduce}
+          title="Why InLoop exists"
+          subtitle="Most platforms optimise attention. InLoop is built around how people actually relate — in circles, with intention, and without extraction."
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <GlassPanel className="p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-white/92">The problem with modern social</h3>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/68">
+              {problems.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-0.5 shrink-0 text-[#FF9999]">×</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-white/90 mb-4">The InLoop approach</h3>
-            <ul className="space-y-3 text-white/65 text-sm leading-relaxed">
-              {approach.map((p, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="text-emerald-400/80 shrink-0 mt-0.5">✓</span>
-                  <span>{p}</span>
+          </GlassPanel>
+          <GlassPanel className="p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-white/92">The InLoop approach</h3>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/68">
+              {approach.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-0.5 shrink-0 text-[#66FF99]">✓</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </GlassPanel>
         </div>
       </div>
     </section>
   );
 }
 
-function USPFeatures() {
+function Features() {
   const reduce = useReducedMotion();
   const features = [
-    { icon: CircleDot, title: "Inner circles", desc: "Define who matters most. Interact in smaller, trusted spaces instead of broadcasting to everyone." },
-    { icon: Map, title: "Visual relationship map", desc: "See your connections and social proximity in a more human way — not a flat list of followers." },
-    { icon: EyeOff, title: "Disappearing by default", desc: "Share intentionally. Content that doesn’t stick around by default keeps the focus on the moment." },
-    { icon: Shield, title: "No ads, no feed traps", desc: "The product isn’t built to monetise your attention. No algorithmic hooks or vanity metrics." },
-    { icon: Lock, title: "Invite-only trust model", desc: "No public search. You choose who’s in your network. Privacy and safety are built in from the start." },
-    { icon: Calendar, title: "Communities and events", desc: "Not just DMs. Real groups, gatherings, and meaningful interaction beyond passive scrolling." },
+    { icon: CircleDot, title: "Inner circles", desc: "Define who matters most and interact in smaller, trusted spaces." },
+    { icon: Map, title: "Relationship map", desc: "See your network with more human context than a flat follower list." },
+    { icon: MessageCircle, title: "Chat and calls", desc: "Messages, voice, and video built into the same calm experience." },
+    { icon: EyeOff, title: "Disappearing by default", desc: "Share intentionally with content that does not linger forever." },
+    { icon: Shield, title: "No ads, no feed traps", desc: "No algorithmic hooks or vanity metrics driving the product." },
+    { icon: Calendar, title: "Communities and events", desc: "Groups, gatherings, and real-world connection beyond passive scrolling." },
   ];
 
   return (
-    <section id="features" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight"
-        >
-          A different kind of social
-        </motion.h2>
-        <motion.p
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 }}
-          className="mt-3 text-white/75 max-w-xl leading-relaxed"
-        >
-          Built around structure, trust, and intention — not engagement at any cost.
-        </motion.p>
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, i) => (
+    <section id="features" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          reduce={reduce}
+          title="Built like the app feels"
+          subtitle="Frosted glass panels, your wallpaper, and controls that stay out of the way — the same visual language on iOS and Android."
+          align="left"
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, index) => (
             <motion.div
-              key={f.title}
+              key={feature.title}
               initial={reduce ? {} : { opacity: 0, y: 12 }}
               whileInView={reduce ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              className="rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 hover:bg-white/[0.08] transition-colors"
+              transition={{ duration: 0.4, delay: index * 0.04 }}
             >
-              <div className="h-11 w-11 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
-                <f.icon className="h-5 w-5 text-white/90" />
-              </div>
-              <h3 className="mt-4 font-semibold text-white/95">{f.title}</h3>
-              <p className="mt-2 text-sm text-white/65 leading-relaxed">{f.desc}</p>
+              <GlassPanel className="h-full p-6">
+                <div className="flex h-11 w-11 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
+                  <feature.icon className="h-5 w-5 text-white/90" />
+                </div>
+                <h3 className="mt-4 font-semibold text-white/95">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/65">{feature.desc}</p>
+              </GlassPanel>
             </motion.div>
           ))}
         </div>
@@ -354,7 +259,7 @@ function USPFeatures() {
   );
 }
 
-function DesignedAroundRelationships() {
+function RelationshipMap() {
   const reduce = useReducedMotion();
   const layers = [
     "Close friends and family",
@@ -364,68 +269,55 @@ function DesignedAroundRelationships() {
   ];
 
   return (
-    <section id="relationships" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <motion.h2
-              initial={reduce ? {} : { opacity: 0, y: 12 }}
-              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight"
-            >
-              Designed around real human relationships
-            </motion.h2>
-            <motion.p
-              initial={reduce ? {} : { opacity: 0, y: 12 }}
-              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-              className="mt-4 text-white/75 leading-relaxed"
-            >
-              Other platforms flatten your social life into one broadcast layer. InLoop reflects how you actually relate: close friends, family, trusted groups, communities, and shared experiences — each with the right level of closeness and context.
-            </motion.p>
-            <ul className="mt-8 space-y-4">
-              {layers.map((layer, i) => (
-                <motion.li
-                  key={layer}
-                  initial={reduce ? {} : { opacity: 0, x: -8 }}
-                  whileInView={reduce ? {} : { opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="flex items-center gap-3 text-white/85"
-                >
-                  <span className="h-2 w-2 rounded-full bg-white/60 shrink-0" />
-                  {layer}
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-          <motion.div
-            initial={reduce ? {} : { opacity: 0, scale: 0.98 }}
-            whileInView={reduce ? {} : { opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center lg:justify-end"
-          >
-            <div className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm p-6 sm:p-8 inline-block">
-              <SpiderWeb
-                size={280}
-                rings={5}
-                spokes={12}
-                nodes={[
-                  { id: "a", label: "Alina", ring: 2, angleDeg: 10 },
-                  { id: "b", label: "Matei", ring: 3, angleDeg: 70 },
-                  { id: "c", label: "Daria", ring: 3, angleDeg: 140 },
-                  { id: "d", label: "Ilya", ring: 4, angleDeg: 210 },
-                  { id: "e", label: "Noah", ring: 2, angleDeg: 280 },
-                  { id: "f", label: "Maya", ring: 4, angleDeg: 330 },
-                ]}
-                centerLabel="You"
-              />
-            </div>
-          </motion.div>
+    <section id="relationships" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <SectionHeading
+            reduce={reduce}
+            title="Designed around real human relationships"
+            subtitle="Other platforms flatten your social life into one broadcast layer. InLoop reflects closeness, context, and the people who actually matter."
+            align="left"
+          />
+          <ul className="mt-8 space-y-4">
+            {layers.map((layer, index) => (
+              <motion.li
+                key={layer}
+                initial={reduce ? {} : { opacity: 0, x: -8 }}
+                whileInView={reduce ? {} : { opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.08 + index * 0.05 }}
+                className="flex items-center gap-3 text-white/85"
+              >
+                <span className="h-2 w-2 shrink-0 rounded-full bg-white/60" />
+                {layer}
+              </motion.li>
+            ))}
+          </ul>
         </div>
+        <motion.div
+          initial={reduce ? {} : { opacity: 0, scale: 0.98 }}
+          whileInView={reduce ? {} : { opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center lg:justify-end"
+        >
+          <GlassPanel className="inline-block p-6 sm:p-8">
+            <SpiderWeb
+              size={280}
+              rings={5}
+              spokes={12}
+              nodes={[
+                { id: "a", label: "Alina", ring: 2, angleDeg: 10 },
+                { id: "b", label: "Matei", ring: 3, angleDeg: 70 },
+                { id: "c", label: "Daria", ring: 3, angleDeg: 140 },
+                { id: "d", label: "Ilya", ring: 4, angleDeg: 210 },
+                { id: "e", label: "Noah", ring: 2, angleDeg: 280 },
+                { id: "f", label: "Maya", ring: 4, angleDeg: 330 },
+              ]}
+              centerLabel="You"
+            />
+          </GlassPanel>
+        </motion.div>
       </div>
     </section>
   );
@@ -433,42 +325,45 @@ function DesignedAroundRelationships() {
 
 function ProductPreview() {
   const reduce = useReducedMotion();
+  const highlights = [
+    { icon: Users, label: "Circles and Connect" },
+    { icon: MessageCircle, label: "Private chat and calls" },
+    { icon: Lock, label: "Privacy Center controls" },
+  ];
 
   return (
-    <section id="product" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-center"
-        >
-          Your network, your way
-        </motion.h2>
-        <motion.p
-          initial={reduce ? {} : { opacity: 0, y: 12 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 }}
-          className="mt-3 text-center text-white/75 max-w-xl mx-auto"
-        >
-          Inner circles, relationship mapping, communities, and events — all in one place.
-        </motion.p>
-        <motion.div
-          initial={reduce ? {} : { opacity: 0, y: 20 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 flex justify-center"
-        >
-          <Image
-            src="/images/feature-images/hero2.PNG"
-            alt="InLoop app preview"
-            width={320}
-            height={480}
-            className="w-full max-w-[260px] sm:max-w-[300px] h-auto rounded-3xl shadow-2xl ring-1 ring-white/10"
-          />
-        </motion.div>
+    <section id="product" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          reduce={reduce}
+          title="Your network, your wallpaper, your pace"
+          subtitle="The same dark, glass-first interface you see in the app — feed, messages, events, and settings floating over the background you choose."
+        />
+        <div className="mt-12 grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <GlassPanel className="p-6 sm:p-8">
+            <div className="space-y-5">
+              {highlights.map((item) => (
+                <div key={item.label} className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
+                    <item.icon className="h-5 w-5 text-white/90" />
+                  </div>
+                  <p className="text-base font-medium text-white/88">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </GlassPanel>
+          <div className="flex justify-center">
+            <GlassPanel className="inline-flex p-3">
+              <Image
+                src="/images/feature-images/hero2.PNG"
+                alt="InLoop app preview"
+                width={320}
+                height={480}
+                className="h-auto w-full max-w-[260px] sm:max-w-[300px]"
+              />
+            </GlassPanel>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -477,177 +372,174 @@ function ProductPreview() {
 function TrustSection() {
   const reduce = useReducedMotion();
   const points = [
-    "No ad-driven incentives — we don’t sell your attention.",
+    "No ad-driven incentives — we do not sell your attention.",
     "No attention farming or feed optimisation against your wellbeing.",
-    "Privacy-first architecture: no public search, intentional sharing.",
+    "Privacy-first architecture with intentional sharing and in-app controls.",
     "Built for users and communities, not for extraction.",
   ];
 
   return (
-    <section id="trust" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm p-8 sm:p-10 md:p-12">
-          <motion.h2
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl font-semibold tracking-tight"
-          >
-            Trust through product philosophy
-          </motion.h2>
-          <motion.p
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
-            className="mt-3 text-white/75 max-w-2xl leading-relaxed"
-          >
-            InLoop’s design reflects how we make money — and how we don’t. Value comes from community and real-world use, not from keeping you glued to a feed.
-          </motion.p>
+    <section id="trust" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <GlassPanel className="p-8 sm:p-10 md:p-12">
+          <SectionHeading
+            reduce={reduce}
+            title="Trust through product philosophy"
+            subtitle="InLoop’s design reflects how we make money — and how we do not. Value comes from community and real-world use, not from keeping you glued to a feed."
+            align="left"
+          />
           <ul className="mt-8 space-y-4">
-            {points.map((p, i) => (
+            {points.map((point, index) => (
               <motion.li
-                key={i}
+                key={point}
                 initial={reduce ? {} : { opacity: 0, x: -8 }}
                 whileInView={reduce ? {} : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.08 + i * 0.04 }}
+                transition={{ delay: 0.08 + index * 0.04 }}
                 className="flex gap-3 text-white/85"
               >
-                <Shield className="h-5 w-5 text-white/60 shrink-0 mt-0.5" />
-                <span>{p}</span>
+                <Shield className="mt-0.5 h-5 w-5 shrink-0 text-white/60" />
+                <span>{point}</span>
               </motion.li>
             ))}
           </ul>
-        </div>
+        </GlassPanel>
       </div>
     </section>
   );
 }
 
-const FORMSPREE_BETA_ID = process.env.NEXT_PUBLIC_FORMSPREE_BETA_ID || "";
-const FORMSPREE_WAITLIST_ID = process.env.NEXT_PUBLIC_FORMSPREE_WAITLIST_ID || "";
-
-function BetaAndReserve() {
+function AccessSection() {
   const [betaStatus, setBetaStatus] = useState({ state: "idle", message: "" });
   const [waitlistStatus, setWaitlistStatus] = useState({ state: "idle", message: "" });
+  const benefits = [
+    "Early access to the app",
+    "Founder updates and roadmap",
+    "Help shape the product",
+    "Priority invites for your circles",
+  ];
 
-  const handleBetaSubmit = async (e) => {
-    e.preventDefault();
+  const handleBetaSubmit = async (event) => {
+    event.preventDefault();
     if (!FORMSPREE_BETA_ID) {
       setBetaStatus({ state: "error", message: "Form not configured." });
       return;
     }
-    const form = e.target;
+    const form = event.target;
     const email = form.email?.value?.trim();
     if (!email) return;
     setBetaStatus({ state: "loading", message: "" });
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_BETA_ID}`, {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_BETA_ID}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, _subject: "InLoop Beta request" }),
       });
-      if (res.ok) {
+      if (response.ok) {
         setBetaStatus({ state: "success", message: "You’re in. We’ll be in touch." });
         form.reset();
-      } else setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
+      } else {
+        setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
+      }
     } catch {
       setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
     }
   };
 
-  const handleWaitlistSubmit = async (e) => {
-    e.preventDefault();
+  const handleWaitlistSubmit = async (event) => {
+    event.preventDefault();
     if (!FORMSPREE_WAITLIST_ID) {
       setWaitlistStatus({ state: "error", message: "Form not configured." });
       return;
     }
-    const form = e.target;
+    const form = event.target;
     const email = form.email?.value?.trim();
     if (!email) return;
     setWaitlistStatus({ state: "loading", message: "" });
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_WAITLIST_ID}`, {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_WAITLIST_ID}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, _subject: "InLoop Waitlist signup" }),
       });
-      if (res.ok) {
+      if (response.ok) {
         setWaitlistStatus({ state: "success", message: "You’re on the list." });
         form.reset();
-      } else setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
+      } else {
+        setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
+      }
     } catch {
       setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
     }
   };
 
-  const benefits = ["Early access to the app", "Founder updates and roadmap", "Help shape the product", "Priority invites for your circles"];
-
   return (
-    <section id="access" className="relative py-20 md:py-28 scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">Join the early movement</h2>
-          <p className="mt-3 text-white/75 max-w-lg mx-auto">
-            Get early access, founder updates, and a say in how InLoop grows. No spam — just meaningful updates.
-          </p>
-        </div>
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          <div className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm p-8">
+    <section id="access" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          title="Join the early movement"
+          subtitle="Get early access, founder updates, and a say in how InLoop grows."
+        />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <GlassPanel className="p-8">
             <h3 className="text-xl font-semibold">Request beta access</h3>
-            <p className="mt-2 text-white/75 text-sm">For people who want to use and shape InLoop from day one.</p>
-            <form className="mt-6 flex flex-col sm:flex-row gap-3" onSubmit={handleBetaSubmit}>
+            <p className="mt-2 text-sm text-white/72">For people who want to use and shape InLoop from day one.</p>
+            <form className="mt-6 flex flex-col gap-3 sm:flex-row" onSubmit={handleBetaSubmit}>
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="flex-1 h-12 rounded-2xl bg-white/10 border border-white/20 px-4 placeholder:text-white/50 outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30"
+                className="glass-field flex-1"
                 disabled={betaStatus.state === "loading"}
               />
               <button
                 type="submit"
-                className="h-12 px-6 rounded-2xl bg-white text-black font-medium hover:bg-white/95 transition-colors disabled:opacity-60 disabled:pointer-events-none shrink-0"
+                className="glass-button-primary shrink-0 px-6 disabled:pointer-events-none disabled:opacity-60"
               >
                 {betaStatus.state === "loading" ? "Sending…" : "Request invite"}
               </button>
             </form>
-            {betaStatus.message && (
-              <p className={`mt-3 text-sm ${betaStatus.state === "error" ? "text-red-300" : "text-emerald-300"}`}>{betaStatus.message}</p>
-            )}
-          </div>
-          <div className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-sm p-8">
+            {betaStatus.message ? (
+              <p className={`mt-3 text-sm ${betaStatus.state === "error" ? "text-[#FF6B6B]" : "text-[#66FF99]"}`}>
+                {betaStatus.message}
+              </p>
+            ) : null}
+          </GlassPanel>
+
+          <GlassPanel className="p-8">
             <h3 className="text-xl font-semibold">Join the waitlist</h3>
-            <p className="mt-2 text-white/75 text-sm">Be first to know when we launch. Exclusive updates and community access.</p>
-            <form className="mt-6 flex flex-col sm:flex-row gap-3" onSubmit={handleWaitlistSubmit}>
+            <p className="mt-2 text-sm text-white/72">Be first to know when we launch.</p>
+            <form className="mt-6 flex flex-col gap-3 sm:flex-row" onSubmit={handleWaitlistSubmit}>
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="flex-1 h-12 rounded-2xl bg-white/10 border border-white/20 px-4 placeholder:text-white/50 outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30"
+                className="glass-field flex-1"
                 disabled={waitlistStatus.state === "loading"}
               />
               <button
                 type="submit"
-                className="h-12 px-6 rounded-2xl bg-white/90 text-black font-medium hover:bg-white transition-colors disabled:opacity-60 disabled:pointer-events-none shrink-0"
+                className="glass-button-primary shrink-0 px-6 disabled:pointer-events-none disabled:opacity-60"
               >
                 {waitlistStatus.state === "loading" ? "Sending…" : "Join waitlist"}
               </button>
             </form>
-            {waitlistStatus.message && (
-              <p className={`mt-3 text-sm ${waitlistStatus.state === "error" ? "text-red-300" : "text-emerald-300"}`}>{waitlistStatus.message}</p>
-            )}
+            {waitlistStatus.message ? (
+              <p className={`mt-3 text-sm ${waitlistStatus.state === "error" ? "text-[#FF6B6B]" : "text-[#66FF99]"}`}>
+                {waitlistStatus.message}
+              </p>
+            ) : null}
             <ul className="mt-6 space-y-2">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-center gap-2 text-sm text-white/70">
-                  <Sparkles className="h-4 w-4 text-white/50 shrink-0" />
-                  {b}
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-center gap-2 text-sm text-white/70">
+                  <Sparkles className="h-4 w-4 shrink-0 text-white/50" />
+                  {benefit}
                 </li>
               ))}
             </ul>
-          </div>
+          </GlassPanel>
         </div>
       </div>
     </section>
@@ -655,23 +547,33 @@ function BetaAndReserve() {
 }
 
 function Footer() {
+  return <SiteFooter />;
+}
+
+function SectionHeading({ reduce = false, title, subtitle, align = "center" }) {
+  const alignment = align === "left" ? "text-left mx-0" : "text-center mx-auto";
+
   return (
-    <footer className="relative border-t border-white/15 py-10 md:py-12">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <Image src="/images/InLoop.png" alt="InLoop" width={120} height={32} className="h-7 w-auto" />
-          <span className="text-white/50 text-sm">© {new Date().getFullYear()}</span>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
-          <a href="/privacy" className="text-white/55 text-sm hover:text-white/85 transition-colors">
-            Privacy Policy
-          </a>
-          <a href="/child-safety" className="text-white/55 text-sm hover:text-white/85 transition-colors">
-            Child Safety
-          </a>
-          <p className="text-white/55 text-sm">A slower, more intentional way to connect.</p>
-        </div>
-      </div>
-    </footer>
+    <div className={`max-w-3xl ${alignment}`}>
+      <motion.h2
+        initial={reduce ? {} : { opacity: 0, y: 12 }}
+        whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl"
+      >
+        {title}
+      </motion.h2>
+      {subtitle ? (
+        <motion.p
+          initial={reduce ? {} : { opacity: 0, y: 12 }}
+          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.05 }}
+          className="mt-4 leading-relaxed text-white/72"
+        >
+          {subtitle}
+        </motion.p>
+      ) : null}
+    </div>
   );
 }
