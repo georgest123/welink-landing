@@ -4,17 +4,19 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar,
   CircleDot,
-  EyeOff,
+  LayoutGrid,
   Lock,
-  Map,
   MessageCircle,
+  Palette,
+  Phone,
+  Radio,
   Shield,
-  Sparkles,
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
+  DownloadBadges,
   GlassPanel,
   SiteFooter,
   SiteHeader,
@@ -28,10 +30,6 @@ function smoothForAWhile(ms = 400) {
   clearTimeout(html._smoothTO);
   html._smoothTO = setTimeout(() => html.classList.remove("smooth-scroll"), ms);
 }
-
-const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
-const FORMSPREE_BETA_ID = process.env.NEXT_PUBLIC_FORMSPREE_BETA_ID || "";
-const FORMSPREE_WAITLIST_ID = process.env.NEXT_PUBLIC_FORMSPREE_WAITLIST_ID || "";
 
 export default function Page() {
   useEffect(() => {
@@ -49,10 +47,10 @@ export default function Page() {
         <Hero />
         <WhyInLoop />
         <Features />
-        <RelationshipMap />
-        <ProductPreview />
+        <InnerCircleSection />
+        <AppPillars />
         <TrustSection />
-        <AccessSection />
+        <DownloadSection />
         <Footer />
       </main>
     </div>
@@ -87,7 +85,7 @@ function Hero() {
             transition={{ duration: 0.45, delay: 0.04 }}
             className="mt-6 text-sm font-medium uppercase tracking-[0.24em] text-white/55"
           >
-            Slow social, by design
+            Your inner circle, not the whole internet
           </motion.p>
           <motion.h1
             initial={reduce ? {} : { opacity: 0, y: 16 }}
@@ -95,7 +93,7 @@ function Hero() {
             transition={{ duration: 0.5, delay: 0.08 }}
             className="mt-4 text-[2rem] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
           >
-            Real relationships, not algorithmic feeds.
+            Social for the people who actually matter.
           </motion.h1>
           <motion.p
             initial={reduce ? {} : { opacity: 0, y: 16 }}
@@ -103,7 +101,7 @@ function Hero() {
             transition={{ duration: 0.5, delay: 0.12 }}
             className="mt-5 max-w-lg text-base leading-relaxed text-white/72 sm:text-lg"
           >
-            InLoop is a wallpaper-first social app for trusted circles, private sharing, chat, calls, and events — without likes, follower pressure, or feed traps.
+            InLoop brings your inner circle, community hubs, events, messages, and calls together in one calm app — with your wallpaper, frosted glass UI, and no algorithmic feed.
           </motion.p>
           <motion.div
             initial={reduce ? {} : { opacity: 0, y: 16 }}
@@ -111,11 +109,11 @@ function Hero() {
             transition={{ duration: 0.5, delay: 0.16 }}
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start"
           >
-            <a href="#access" onClick={() => smoothForAWhile()} className="glass-button-primary">
-              Join the beta
+            <a href="#download" onClick={() => smoothForAWhile()} className="glass-button-primary">
+              Download InLoop
             </a>
             <a href="#features" onClick={() => smoothForAWhile()} className="glass-button-ghost">
-              Explore features
+              See what&apos;s inside
             </a>
           </motion.div>
           <motion.div
@@ -124,20 +122,7 @@ function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-8 flex justify-center lg:justify-start"
           >
-            <a
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block transition-opacity hover:opacity-90"
-            >
-              <Image
-                src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg"
-                alt="Download on the App Store"
-                width={140}
-                height={44}
-                className="h-11 w-auto"
-              />
-            </a>
+            <DownloadBadges className="justify-center lg:justify-start" />
           </motion.div>
         </div>
 
@@ -166,16 +151,16 @@ function Hero() {
 function WhyInLoop() {
   const reduce = useReducedMotion();
   const problems = [
-    "Endless feeds designed to keep you scrolling",
-    "Everyone flattened into one public audience",
-    "Performance anxiety and follower-count culture",
-    "Privacy erosion and data exploitation",
+    "One giant public feed for everyone you know",
+    "Algorithms deciding what you see and when you scroll",
+    "Follower counts, likes, and performance pressure",
+    "Your attention treated as the product",
   ];
   const approach = [
-    "Structure relationships into meaningful circles",
-    "Share with who matters, not with everyone",
-    "No feed traps, vanity metrics, or pressure to perform",
-    "Privacy-first by design with intentional sharing",
+    "An inner-circle feed for people you trust",
+    "Community hubs for shared interests — on your terms",
+    "Messages, voice, and video calls built in",
+    "Events that get you off the screen and into real life",
   ];
 
   return (
@@ -183,12 +168,12 @@ function WhyInLoop() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           reduce={reduce}
-          title="Why InLoop exists"
-          subtitle="Most platforms optimise attention. InLoop is built around how people actually relate — in circles, with intention, and without extraction."
+          title="Built for closeness, not clout"
+          subtitle="InLoop is a social app for real relationships — not broadcasting to strangers, chasing metrics, or getting pulled into endless scroll loops."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <GlassPanel className="p-6 sm:p-8">
-            <h3 className="text-lg font-semibold text-white/92">The problem with modern social</h3>
+            <h3 className="text-lg font-semibold text-white/92">What we left behind</h3>
             <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/68">
               {problems.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -199,7 +184,7 @@ function WhyInLoop() {
             </ul>
           </GlassPanel>
           <GlassPanel className="p-6 sm:p-8">
-            <h3 className="text-lg font-semibold text-white/92">The InLoop approach</h3>
+            <h3 className="text-lg font-semibold text-white/92">What InLoop gives you</h3>
             <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/68">
               {approach.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -218,12 +203,36 @@ function WhyInLoop() {
 function Features() {
   const reduce = useReducedMotion();
   const features = [
-    { icon: CircleDot, title: "Inner circles", desc: "Define who matters most and interact in smaller, trusted spaces." },
-    { icon: Map, title: "Relationship map", desc: "See your network with more human context than a flat follower list." },
-    { icon: MessageCircle, title: "Chat and calls", desc: "Messages, voice, and video built into the same calm experience." },
-    { icon: EyeOff, title: "Disappearing by default", desc: "Share intentionally with content that does not linger forever." },
-    { icon: Shield, title: "No ads, no feed traps", desc: "No algorithmic hooks or vanity metrics driving the product." },
-    { icon: Calendar, title: "Communities and events", desc: "Groups, gatherings, and real-world connection beyond passive scrolling." },
+    {
+      icon: CircleDot,
+      title: "Inner circle feed",
+      desc: "Share posts with your trusted circle — not the whole internet. Feed content is removed after 7 days so the focus stays on the moment.",
+    },
+    {
+      icon: LayoutGrid,
+      title: "Community hubs",
+      desc: "Join interest-based communities and see posts from hubs you choose to be part of.",
+    },
+    {
+      icon: Users,
+      title: "Connect & Bump",
+      desc: "Build your inner circle and bump phones nearby to connect in person — no public search required.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Messages & calls",
+      desc: "Direct messages with optional end-to-end encryption, plus voice and video calls when you want to talk properly.",
+    },
+    {
+      icon: Calendar,
+      title: "Events",
+      desc: "Discover events near you, join gatherings, and create experiences — with business tools for organisers.",
+    },
+    {
+      icon: Palette,
+      title: "Your wallpaper, your look",
+      desc: "Pick your background, glass style, and accent colour. The whole app floats over the photo you choose.",
+    },
   ];
 
   return (
@@ -231,8 +240,8 @@ function Features() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           reduce={reduce}
-          title="Built like the app feels"
-          subtitle="Frosted glass panels, your wallpaper, and controls that stay out of the way — the same visual language on iOS and Android."
+          title="Everything your social life needs"
+          subtitle="Feed, community, connections, events, and messaging — designed as one coherent experience on iOS and Android."
           align="left"
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -259,13 +268,13 @@ function Features() {
   );
 }
 
-function RelationshipMap() {
+function InnerCircleSection() {
   const reduce = useReducedMotion();
   const layers = [
-    "Close friends and family",
-    "Trusted groups and circles",
-    "Communities and shared interests",
-    "Events and real-world connection",
+    "Your inner circle — the people you trust most",
+    "Community hubs for shared interests",
+    "Events and real-world meetups",
+    "Private messages and calls when it matters",
   ];
 
   return (
@@ -274,8 +283,8 @@ function RelationshipMap() {
         <div>
           <SectionHeading
             reduce={reduce}
-            title="Designed around real human relationships"
-            subtitle="Other platforms flatten your social life into one broadcast layer. InLoop reflects closeness, context, and the people who actually matter."
+            title="Structure that matches real life"
+            subtitle="Most apps flatten everyone into one audience. InLoop separates your inner circle, wider community, and events — so sharing always has the right context."
             align="left"
           />
           <ul className="mt-8 space-y-4">
@@ -323,12 +332,14 @@ function RelationshipMap() {
   );
 }
 
-function ProductPreview() {
+function AppPillars() {
   const reduce = useReducedMotion();
-  const highlights = [
-    { icon: Users, label: "Circles and Connect" },
-    { icon: MessageCircle, label: "Private chat and calls" },
-    { icon: Lock, label: "Privacy Center controls" },
+  const pillars = [
+    { icon: Radio, label: "Feed", desc: "Catch up with your inner circle" },
+    { icon: LayoutGrid, label: "Community", desc: "Hubs and shared interests" },
+    { icon: Users, label: "Inner Circle", desc: "Your connections and Bump to Connect" },
+    { icon: Calendar, label: "Events", desc: "Local gatherings and tickets" },
+    { icon: MessageCircle, label: "Messages", desc: "Chat, voice, and video calls" },
   ];
 
   return (
@@ -336,18 +347,21 @@ function ProductPreview() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           reduce={reduce}
-          title="Your network, your wallpaper, your pace"
-          subtitle="The same dark, glass-first interface you see in the app — feed, messages, events, and settings floating over the background you choose."
+          title="Five tabs. One calm app."
+          subtitle="The same frosted-glass interface you see in the app — dashboard, feed, community, connect, events, and messages floating over your chosen wallpaper."
         />
-        <div className="mt-12 grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-12 grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <GlassPanel className="p-6 sm:p-8">
             <div className="space-y-5">
-              {highlights.map((item) => (
-                <div key={item.label} className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
+              {pillars.map((item) => (
+                <div key={item.label} className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
                     <item.icon className="h-5 w-5 text-white/90" />
                   </div>
-                  <p className="text-base font-medium text-white/88">{item.label}</p>
+                  <div>
+                    <p className="text-base font-semibold text-white/92">{item.label}</p>
+                    <p className="mt-1 text-sm text-white/62">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -372,10 +386,10 @@ function ProductPreview() {
 function TrustSection() {
   const reduce = useReducedMotion();
   const points = [
-    "No ad-driven incentives — we do not sell your attention.",
-    "No attention farming or feed optimisation against your wellbeing.",
-    "Privacy-first architecture with intentional sharing and in-app controls.",
-    "Built for users and communities, not for extraction.",
+    { icon: Shield, text: "No ads and no attention-farming business model." },
+    { icon: Lock, text: "Privacy Center with data export, blocked users, and in-app reporting." },
+    { icon: MessageCircle, text: "Optional end-to-end encryption for direct messages." },
+    { icon: Phone, text: "Voice and video calls built in — not bolted on as an afterthought." },
   ];
 
   return (
@@ -384,22 +398,22 @@ function TrustSection() {
         <GlassPanel className="p-8 sm:p-10 md:p-12">
           <SectionHeading
             reduce={reduce}
-            title="Trust through product philosophy"
-            subtitle="InLoop’s design reflects how we make money — and how we do not. Value comes from community and real-world use, not from keeping you glued to a feed."
+            title="Privacy and safety by design"
+            subtitle="InLoop is built for people who want control — over who sees their posts, how long content stays around, and how their data is handled."
             align="left"
           />
           <ul className="mt-8 space-y-4">
             {points.map((point, index) => (
               <motion.li
-                key={point}
+                key={point.text}
                 initial={reduce ? {} : { opacity: 0, x: -8 }}
                 whileInView={reduce ? {} : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.08 + index * 0.04 }}
                 className="flex gap-3 text-white/85"
               >
-                <Shield className="mt-0.5 h-5 w-5 shrink-0 text-white/60" />
-                <span>{point}</span>
+                <point.icon className="mt-0.5 h-5 w-5 shrink-0 text-white/60" />
+                <span>{point.text}</span>
               </motion.li>
             ))}
           </ul>
@@ -409,138 +423,32 @@ function TrustSection() {
   );
 }
 
-function AccessSection() {
-  const [betaStatus, setBetaStatus] = useState({ state: "idle", message: "" });
-  const [waitlistStatus, setWaitlistStatus] = useState({ state: "idle", message: "" });
-  const benefits = [
-    "Early access to the app",
-    "Founder updates and roadmap",
-    "Help shape the product",
-    "Priority invites for your circles",
-  ];
-
-  const handleBetaSubmit = async (event) => {
-    event.preventDefault();
-    if (!FORMSPREE_BETA_ID) {
-      setBetaStatus({ state: "error", message: "Form not configured." });
-      return;
-    }
-    const form = event.target;
-    const email = form.email?.value?.trim();
-    if (!email) return;
-    setBetaStatus({ state: "loading", message: "" });
-    try {
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_BETA_ID}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, _subject: "InLoop Beta request" }),
-      });
-      if (response.ok) {
-        setBetaStatus({ state: "success", message: "You’re in. We’ll be in touch." });
-        form.reset();
-      } else {
-        setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
-      }
-    } catch {
-      setBetaStatus({ state: "error", message: "Something went wrong. Try again." });
-    }
-  };
-
-  const handleWaitlistSubmit = async (event) => {
-    event.preventDefault();
-    if (!FORMSPREE_WAITLIST_ID) {
-      setWaitlistStatus({ state: "error", message: "Form not configured." });
-      return;
-    }
-    const form = event.target;
-    const email = form.email?.value?.trim();
-    if (!email) return;
-    setWaitlistStatus({ state: "loading", message: "" });
-    try {
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_WAITLIST_ID}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, _subject: "InLoop Waitlist signup" }),
-      });
-      if (response.ok) {
-        setWaitlistStatus({ state: "success", message: "You’re on the list." });
-        form.reset();
-      } else {
-        setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
-      }
-    } catch {
-      setWaitlistStatus({ state: "error", message: "Something went wrong. Try again." });
-    }
-  };
+function DownloadSection() {
+  const reduce = useReducedMotion();
 
   return (
-    <section id="access" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="download" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-3xl text-center">
         <SectionHeading
-          title="Join the early movement"
-          subtitle="Get early access, founder updates, and a say in how InLoop grows."
+          reduce={reduce}
+          title="Download InLoop"
+          subtitle="Available now on iOS and Android. Sign in, pick your wallpaper, and start with the people who matter."
         />
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <GlassPanel className="p-8">
-            <h3 className="text-xl font-semibold">Request beta access</h3>
-            <p className="mt-2 text-sm text-white/72">For people who want to use and shape InLoop from day one.</p>
-            <form className="mt-6 flex flex-col gap-3 sm:flex-row" onSubmit={handleBetaSubmit}>
-              <input
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="glass-field flex-1"
-                disabled={betaStatus.state === "loading"}
-              />
-              <button
-                type="submit"
-                className="glass-button-primary shrink-0 px-6 disabled:pointer-events-none disabled:opacity-60"
-              >
-                {betaStatus.state === "loading" ? "Sending…" : "Request invite"}
-              </button>
-            </form>
-            {betaStatus.message ? (
-              <p className={`mt-3 text-sm ${betaStatus.state === "error" ? "text-[#FF6B6B]" : "text-[#66FF99]"}`}>
-                {betaStatus.message}
-              </p>
-            ) : null}
-          </GlassPanel>
-
-          <GlassPanel className="p-8">
-            <h3 className="text-xl font-semibold">Join the waitlist</h3>
-            <p className="mt-2 text-sm text-white/72">Be first to know when we launch.</p>
-            <form className="mt-6 flex flex-col gap-3 sm:flex-row" onSubmit={handleWaitlistSubmit}>
-              <input
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="glass-field flex-1"
-                disabled={waitlistStatus.state === "loading"}
-              />
-              <button
-                type="submit"
-                className="glass-button-primary shrink-0 px-6 disabled:pointer-events-none disabled:opacity-60"
-              >
-                {waitlistStatus.state === "loading" ? "Sending…" : "Join waitlist"}
-              </button>
-            </form>
-            {waitlistStatus.message ? (
-              <p className={`mt-3 text-sm ${waitlistStatus.state === "error" ? "text-[#FF6B6B]" : "text-[#66FF99]"}`}>
-                {waitlistStatus.message}
-              </p>
-            ) : null}
-            <ul className="mt-6 space-y-2">
-              {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-center gap-2 text-sm text-white/70">
-                  <Sparkles className="h-4 w-4 shrink-0 text-white/50" />
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-          </GlassPanel>
-        </div>
+        <motion.div
+          initial={reduce ? {} : { opacity: 0, y: 12 }}
+          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mt-10"
+        >
+          <DownloadBadges />
+        </motion.div>
+        <p className="mt-8 text-sm text-white/55">
+          Questions or support?{" "}
+          <a href="mailto:support@inloop.uk" className="text-white/75 underline decoration-white/30 underline-offset-2 hover:text-white">
+            support@inloop.uk
+          </a>
+        </p>
       </div>
     </section>
   );
@@ -551,7 +459,7 @@ function Footer() {
 }
 
 function SectionHeading({ reduce = false, title, subtitle, align = "center" }) {
-  const alignment = align === "left" ? "text-left mx-0" : "text-center mx-auto";
+  const alignment = align === "left" ? "mx-0 text-left" : "mx-auto text-center";
 
   return (
     <div className={`max-w-3xl ${alignment}`}>

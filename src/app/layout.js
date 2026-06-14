@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "InLoop — Real relationships, not algorithmic feeds",
+  title: "InLoop — Social for your inner circle",
   description:
-    "A slower, wallpaper-first social app for trusted circles, private sharing, chat, calls, and events.",
+    "InLoop is a wallpaper-first social app for your inner circle, community hubs, events, messages, and calls — available on iOS and Android.",
 };
 
 export default function RootLayout({ children }) {

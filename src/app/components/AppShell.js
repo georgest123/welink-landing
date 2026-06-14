@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/app/inloop";
+const PLAY_STORE_URL =
+  process.env.NEXT_PUBLIC_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=app.inloop";
+
 export function WallpaperBackground() {
   return (
     <>
@@ -21,8 +25,8 @@ export function SiteHeader({ compact = false }) {
     : [
         { label: "Why InLoop", href: "#why" },
         { label: "Features", href: "#features" },
-        { label: "Trust", href: "#trust" },
-        { label: "Get access", href: "#access" },
+        { label: "Privacy", href: "#trust" },
+        { label: "Download", href: "#download" },
       ];
 
   return (
@@ -41,19 +45,15 @@ export function SiteHeader({ compact = false }) {
         {!compact && (
           <nav className="hidden items-center gap-7 text-sm md:flex">
             {items.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-white/75 transition-colors hover:text-white"
-              >
+              <a key={item.href} href={item.href} className="text-white/75 transition-colors hover:text-white">
                 {item.label}
               </a>
             ))}
           </nav>
         )}
         {!compact ? (
-          <a href="#access" className="glass-button-primary hidden h-11 px-5 text-sm sm:inline-flex">
-            Get access
+          <a href="#download" className="glass-button-primary hidden h-11 px-5 text-sm sm:inline-flex">
+            Download
           </a>
         ) : (
           <Link href="/" className="text-sm text-white/70 transition-colors hover:text-white">
@@ -62,6 +62,30 @@ export function SiteHeader({ compact = false }) {
         )}
       </div>
     </header>
+  );
+}
+
+export function DownloadBadges({ className = "" }) {
+  return (
+    <div className={`flex flex-wrap items-center justify-center gap-4 ${className}`.trim()}>
+      <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block transition-opacity hover:opacity-90">
+        <Image
+          src="/images/feature-images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg"
+          alt="Download on the App Store"
+          width={140}
+          height={44}
+          className="h-11 w-auto"
+        />
+      </a>
+      <a
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="glass-button-ghost h-11 px-5 text-sm"
+      >
+        Get it on Google Play
+      </a>
+    </div>
   );
 }
 
@@ -80,7 +104,12 @@ export function SiteFooter() {
           <Link href="/child-safety" className="text-sm text-white/55 transition-colors hover:text-white/85">
             Child Safety
           </Link>
-          <p className="text-sm text-white/55">Your inner circle. Your wallpaper. Your pace.</p>
+          <a
+            href="mailto:support@inloop.uk"
+            className="text-sm text-white/55 transition-colors hover:text-white/85"
+          >
+            support@inloop.uk
+          </a>
         </div>
       </div>
     </footer>
@@ -89,29 +118,4 @@ export function SiteFooter() {
 
 export function GlassPanel({ className = "", children }) {
   return <div className={`glass-panel ${className}`.trim()}>{children}</div>;
-}
-
-export function LegalArticle({ title, updated, children }) {
-  return (
-    <div className="relative min-h-screen w-full text-white">
-      <WallpaperBackground />
-      <SiteHeader compact />
-      <main className="relative z-10 mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
-        <article className="glass-panel px-5 py-8 sm:px-8 sm:py-10">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h1>
-          {updated ? <p className="mt-3 text-sm text-white/60">{updated}</p> : null}
-          <div className="mt-8 flex flex-col gap-10 border-t border-white/10 pt-8">{children}</div>
-        </article>
-      </main>
-    </div>
-  );
-}
-
-export function LegalSection({ title, children }) {
-  return (
-    <section>
-      <h2 className="text-lg font-semibold tracking-tight text-white/95 sm:text-xl">{title}</h2>
-      <div className="mt-4 space-y-4 text-sm leading-relaxed text-white/80">{children}</div>
-    </section>
-  );
 }
