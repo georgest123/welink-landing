@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export { SiteHeader } from "./SiteHeader";
+
 const APP_STORE_URL =
   process.env.NEXT_PUBLIC_APP_STORE_URL || "https://apps.apple.com/gb/app/inloop-app/id6759622200";
 const PLAY_STORE_URL =
@@ -17,52 +19,6 @@ export function WallpaperBackground() {
       <div className="wallpaper-dim" aria-hidden />
       <div className="status-bar-fade" aria-hidden />
     </>
-  );
-}
-
-export function SiteHeader({ compact = false }) {
-  const items = compact
-    ? []
-    : [
-        { label: "Why InLoop", href: "#why" },
-        { label: "Features", href: "#features" },
-        { label: "Privacy", href: "#trust" },
-        { label: "Download", href: "#download" },
-      ];
-
-  return (
-    <header className="sticky top-3 z-30 px-4 sm:px-6">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 glass-panel-chrome px-4 py-3 sm:px-5">
-        <Link href={compact ? "/" : "#top"} className="flex shrink-0 items-center hover:opacity-90 transition-opacity">
-          <Image
-            src="/images/simplelogox1.png"
-            alt="InLoop"
-            width={160}
-            height={48}
-            className="h-8 w-auto sm:h-9"
-            priority
-          />
-        </Link>
-        {!compact && (
-          <nav className="hidden items-center gap-7 text-sm md:flex">
-            {items.map((item) => (
-              <a key={item.href} href={item.href} className="text-white/75 transition-colors hover:text-white">
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        )}
-        {!compact ? (
-          <a href="#download" className="glass-button-primary hidden h-11 px-5 text-sm sm:inline-flex">
-            Download
-          </a>
-        ) : (
-          <Link href="/" className="text-sm text-white/70 transition-colors hover:text-white">
-            ← Home
-          </Link>
-        )}
-      </div>
-    </header>
   );
 }
 
