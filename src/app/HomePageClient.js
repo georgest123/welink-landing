@@ -23,6 +23,7 @@ import {
   WallpaperBackground,
 } from "./components/AppShell";
 import IntroVideo from "./components/IntroVideo";
+import { useIntroGate } from "./components/IntroGateContext";
 import SpiderWeb from "./components/SpiderWeb";
 
 function smoothForAWhile(ms = 400) {
@@ -34,7 +35,11 @@ function smoothForAWhile(ms = 400) {
 
 export default function HomePageClient() {
   const [showMainSite, setShowMainSite] = useState(false);
-  const handleEnterSite = useCallback(() => setShowMainSite(true), []);
+  const { markIntroComplete } = useIntroGate();
+  const handleEnterSite = useCallback(() => {
+    setShowMainSite(true);
+    markIntroComplete();
+  }, [markIntroComplete]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

@@ -2,19 +2,23 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useIntroGate } from "./IntroGateContext";
 
 const CONSENT_KEY = "inloop_cookie_consent";
 
 export default function CookieConsentBanner() {
+  const { introComplete } = useIntroGate();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (!introComplete) return;
+
     try {
       if (!localStorage.getItem(CONSENT_KEY)) setVisible(true);
     } catch {
       setVisible(true);
     }
-  }, []);
+  }, [introComplete]);
 
   const accept = () => {
     try {
@@ -32,7 +36,7 @@ export default function CookieConsentBanner() {
       aria-live="polite"
       aria-label="Cookie consent"
     >
-      <div className="cookie-consent-inner glass-panel-chrome">
+      <div className="cookie-consent-inner cookie-consent-panel">
         <p className="cookie-consent-text">
           We use essential cookies to remember your preferences and keep the site working. See our{" "}
           <Link href="/privacy" className="cookie-consent-link">
