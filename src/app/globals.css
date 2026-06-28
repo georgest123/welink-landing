@@ -321,10 +321,6 @@ body {
     display: flex !important;
   }
 
-  .site-header-download--desktop {
-    display: inline-flex !important;
-  }
-
   .site-header-home-link--desktop {
     display: inline !important;
   }

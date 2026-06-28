@@ -124,18 +124,11 @@ export function SiteHeader({ compact = false }) {
           )}
 
           <div className="flex items-center gap-2">
-            {!compact ? (
-              <Link
-                href="/#download"
-                className="site-header-download--desktop glass-button-primary hidden h-11 px-5 text-sm lg:inline-flex"
-              >
-                Download
-              </Link>
-            ) : (
+            {compact ? (
               <Link href="/" className="site-header-home-link--desktop site-header-link hidden text-sm transition-colors lg:inline">
                 ← Home
               </Link>
-            )}
+            ) : null}
 
             <button
               type="button"
