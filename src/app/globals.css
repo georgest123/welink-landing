@@ -195,6 +195,12 @@ body {
   justify-content: center;
   overflow: hidden;
   background: #000;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.intro-overlay--exiting {
+  opacity: 0;
 }
 
 .intro-video {
