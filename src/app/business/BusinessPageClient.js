@@ -9,7 +9,10 @@ import {
   MapPin,
   Megaphone,
   MessageCircle,
+  QrCode,
+  ScanLine,
   Shield,
+  Smartphone,
   Sparkles,
   Ticket,
   Users,
@@ -17,6 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { businessPlans } from "@/lib/businessPlans";
 import {
   DownloadBadges,
   GlassPanel,
@@ -38,8 +42,8 @@ const benefits = [
   },
   {
     icon: Ticket,
-    title: "Sell tickets in-app",
-    desc: "Paid events and subscriptions handled securely through Stripe — no duct-taping payment links across five different tools.",
+    title: "Digital tickets, done properly",
+    desc: "Sell in-app via Stripe. Every attendee gets a unique QR code, optional Apple Wallet and Google Wallet passes, and you scan them in at the door — no clipboards, no third-party scanners.",
   },
   {
     icon: LayoutGrid,
@@ -64,9 +68,10 @@ const pillars = [
     label: "Events & ticketing",
     points: [
       "Create and promote events with titles, descriptions, times, and pinned locations",
+      "Sell tickets through Stripe with unique QR codes per attendee",
+      "Scan and check in guests in-app at the door — instant validation, no duplicates",
+      "Apple Wallet and Google Wallet passes for a native ticket experience",
       "Get discovered by users browsing events near them",
-      "Sell tickets and manage paid experiences through Stripe",
-      "Verified location pinning for business credibility",
     ],
   },
   {
@@ -149,8 +154,8 @@ export default function BusinessPageClient() {
                 <a href="#get-started" className="glass-button-primary">
                   Start with InLoop Business
                 </a>
-                <a href="#how-it-works" className="glass-button-ghost">
-                  See how it works
+                <a href="#plans" className="glass-button-ghost">
+                  View business plans
                 </a>
               </div>
             </motion.div>
@@ -239,6 +244,126 @@ export default function BusinessPageClient() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="ticketing" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-20">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeading
+              reduce={reduce}
+              title="From checkout to check-in — without leaving InLoop"
+              subtitle="Your customers shouldn't need a PDF, a screenshot, and a prayer. InLoop ticketing is built for the door, the pocket, and the moment they arrive."
+            />
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  icon: QrCode,
+                  title: "Unique QR tickets",
+                  desc: "Every purchase generates a secure, one-of-a-kind QR code in the attendee's app — ready to scan at entry.",
+                },
+                {
+                  icon: ScanLine,
+                  title: "In-app scanning",
+                  desc: "Open the scanner on event day. Point, scan, check in. Invalid or already-used tickets are rejected instantly.",
+                },
+                {
+                  icon: Smartphone,
+                  title: "Wallet passes",
+                  desc: "Attendees can add tickets to Apple Wallet or Google Wallet — the way people expect modern events to work.",
+                },
+                {
+                  icon: CreditCard,
+                  title: "Stripe checkout",
+                  desc: "Paid events handled in-app. No card data on our servers — just a smooth purchase flow your customers trust.",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={reduce ? {} : { opacity: 0, y: 12 }}
+                  whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                >
+                  <GlassPanel className="h-full p-6">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
+                      <item.icon className="h-5 w-5 text-white/90" />
+                    </div>
+                    <h3 className="mt-4 font-semibold text-white/95">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/65">{item.desc}</p>
+                  </GlassPanel>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="plans" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-20">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeading
+              reduce={reduce}
+              title="Three plans. Pick your scale."
+              subtitle="Every tier includes business profiles, event publishing, digital ticketing with QR check-in, wallet passes, and Stripe payments. Upgrade when your community grows."
+            />
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {businessPlans.map((plan, index) => (
+                <motion.div
+                  key={plan.id}
+                  initial={reduce ? {} : { opacity: 0, y: 14 }}
+                  whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                  className={plan.highlighted ? "lg:-mt-2 lg:mb-2" : undefined}
+                >
+                  <GlassPanel
+                    className={`flex h-full flex-col p-6 sm:p-8${
+                      plan.highlighted
+                        ? " border-white/35 bg-white/12 ring-1 ring-white/20"
+                        : ""
+                    }`}
+                  >
+                    {plan.highlighted ? (
+                      <span className="mb-4 inline-flex w-fit rounded-full border border-[#66FF99]/40 bg-[#66FF99]/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-[#66FF99]">
+                        Most popular
+                      </span>
+                    ) : null}
+                    <h3 className="text-xl font-semibold text-white/95">{plan.name}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/60">{plan.designedFor}</p>
+                    <p className="mt-6 flex items-baseline gap-1">
+                      <span className="text-4xl font-semibold tracking-tight text-white">£{plan.pricePounds}</span>
+                      <span className="text-sm text-white/50">/ month</span>
+                    </p>
+                    <ul className="mt-8 flex-1 space-y-3 text-sm leading-relaxed text-white/72">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex gap-3">
+                          <span className="mt-0.5 shrink-0 text-[#66FF99]">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href="#get-started"
+                      className={`mt-8 inline-flex h-12 items-center justify-center rounded-[26px] px-5 text-sm font-semibold transition-transform hover:-translate-y-px ${
+                        plan.highlighted
+                          ? "bg-white text-black hover:bg-white/95"
+                          : "border border-white/25 bg-white/8 text-white hover:bg-white/14"
+                      }`}
+                    >
+                      Get started
+                    </a>
+                  </GlassPanel>
+                </motion.div>
+              ))}
+            </div>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-white/50">
+              Plans are managed in-app after you create your business profile. Prices shown in GBP. Need City Partner or a custom setup?{" "}
+              <a
+                href="mailto:support@inloop.uk?subject=InLoop%20Business%20Plans"
+                className="text-white/70 underline decoration-white/30 underline-offset-2 hover:text-white"
+              >
+                Talk to us
+              </a>
+              .
+            </p>
           </div>
         </section>
 
@@ -334,15 +459,14 @@ export default function BusinessPageClient() {
               </div>
               <GlassPanel className="p-6 sm:p-8">
                 <div className="flex items-center gap-3">
-                  <CreditCard className="h-6 w-6 text-white/70" />
-                  <h3 className="text-lg font-semibold text-white/92">Payments without the headache</h3>
+                  <Ticket className="h-6 w-6 text-white/70" />
+                  <h3 className="text-lg font-semibold text-white/92">Ticketing that works on the night</h3>
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-white/68">
-                  Sell tickets, run paid events, and manage business subscriptions through{" "}
-                  <strong className="text-white/90">Stripe</strong> — industry-standard payments with no card data stored on our servers. Your customers check out in-app. You focus on the experience.
+                  Attendees get a digital ticket with a unique QR code the moment they buy. At the door, open the in-app scanner — valid tickets check in instantly; duplicates and fakes get caught on the spot.
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-white/68">
-                  Business plans and entitlements are built into the platform, so you get the right tools for your stage — from your first community hub to a full analytics suite.
+                  For a premium feel, guests can save passes to <strong className="text-white/90">Apple Wallet</strong> or <strong className="text-white/90">Google Wallet</strong>. Payments run through <strong className="text-white/90">Stripe</strong> — secure checkout, subscriptions, and business billing built in.
                 </p>
               </GlassPanel>
             </div>
