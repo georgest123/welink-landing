@@ -132,17 +132,17 @@ export default function BusinessPageClient() {
               initial={reduce ? {} : { opacity: 0, y: 12 }}
               animate={reduce ? {} : { opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
-              className="mx-auto max-w-3xl text-center"
+              className="w-full text-center"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/70">
                 <Sparkles className="h-3.5 w-3.5" />
                 InLoop for Business
               </span>
-              <h1 className="mt-6 text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl">
+              <h1 className="mt-6 w-full text-[2rem] font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
                 Your community isn&apos;t a follower count.{" "}
                 <span className="text-white/75">It&apos;s your superpower.</span>
               </h1>
-              <p className="mt-5 text-base leading-relaxed text-white/72 sm:text-lg">
+              <p className="mx-auto mt-5 max-w-4xl text-base leading-relaxed text-white/72 sm:text-lg">
                 Stop renting attention from platforms that profit when you lose it. InLoop gives venues, organisers, and local brands the tools to host events, sell tickets, run community hubs, and build relationships that actually show up in real life.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
