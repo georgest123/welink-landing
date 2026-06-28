@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,6 +45,7 @@ function NavLink({ item, onNavigate, className }) {
 
 export function SiteHeader({ compact = false }) {
   const pathname = usePathname();
+  const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -143,22 +145,40 @@ export function SiteHeader({ compact = false }) {
           </div>
         </div>
 
-        {menuOpen ? (
-          <nav
-            id="mobile-site-menu"
-            className="mobile-site-menu lg:hidden"
-            aria-label={compact ? "Site navigation" : "Primary"}
-          >
-            {(compact ? siteNavItems : homeNavItems).map((item) => (
-              <NavLink
-                key={item.href + item.label}
-                item={item}
-                onNavigate={closeMenu}
-                className="mobile-site-menu-link"
-              />
-            ))}
-          </nav>
-        ) : null}
+        <AnimatePresence initial={false}>
+          {menuOpen ? (
+            <motion.nav
+              id="mobile-site-menu"
+              key="mobile-site-menu"
+              initial={reduce ? false : { opacity: 0, height: 0 }}
+              animate={reduce ? {} : { opacity: 1, height: "auto" }}
+              exit={reduce ? {} : { opacity: 0, height: 0 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              className="mobile-site-menu lg:hidden"
+              aria-label={compact ? "Site navigation" : "Primary"}
+            >
+              {(compact ? siteNavItems : homeNavItems).map((item, index) => (
+                <motion.div
+                  key={item.href + item.label}
+                  initial={reduce ? false : { opacity: 0, y: -6 }}
+                  animate={reduce ? {} : { opacity: 1, y: 0 }}
+                  exit={reduce ? {} : { opacity: 0, y: -4 }}
+                  transition={{
+                    duration: 0.22,
+                    delay: reduce ? 0 : 0.05 + index * 0.035,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <NavLink
+                    item={item}
+                    onNavigate={closeMenu}
+                    className="mobile-site-menu-link"
+                  />
+                </motion.div>
+              ))}
+            </motion.nav>
+          ) : null}
+        </AnimatePresence>
       </div>
     </header>
   );
