@@ -1,5 +1,5 @@
 export const SITE_NAME = "InLoop";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://inloop.uk";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.inloop.uk";
 export const SITE_DESCRIPTION =
   "InLoop is a privacy-first social app for your inner circle — community hubs, events, messages, and calls without algorithmic feeds. Available on iOS and Android.";
 export const SITE_TAGLINE = "Social for the people who actually matter.";
