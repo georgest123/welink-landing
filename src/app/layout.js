@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,15 +13,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+
 export const metadata = {
-  title: "InLoop — Social for your inner circle",
-  description:
-    "InLoop is a wallpaper-first social app for your inner circle, community hubs, events, messages, and calls — available on iOS and Android.",
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  ...createPageMetadata({}),
+  icons: {
+    icon: "/images/InLoop.png",
+    apple: "/images/InLoop.png",
+  },
+  manifest: "/manifest.webmanifest",
+  category: "technology",
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );

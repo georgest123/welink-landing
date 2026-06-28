@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 import { SiteHeader, WallpaperBackground } from "../components/AppShell";
 
-export const metadata = {
-  title: "Child Safety Standards — InLoop",
+export const metadata = createPageMetadata({
+  title: "Child Safety Standards",
   description:
     "InLoop's published standards against child sexual abuse and exploitation (CSAE), and how we prevent, detect, and respond to child safety concerns.",
-};
+  path: "/child-safety",
+});
 
 export default function ChildSafetyPage() {
   return (

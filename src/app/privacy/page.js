@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 import { SiteHeader, WallpaperBackground } from "../components/AppShell";
 
-export const metadata = {
-  title: "Privacy Policy — InLoop",
+export const metadata = createPageMetadata({
+  title: "Privacy Policy",
   description:
     "How InLoop collects, uses, stores, and shares information when you use the InLoop mobile application and related services.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

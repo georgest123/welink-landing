@@ -1,11 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-
 export { SiteHeader } from "./SiteHeader";
 
-const APP_STORE_URL = "https://apps.apple.com/gb/app/inloop-app/id6759622200";
-const PLAY_STORE_URL =
-  process.env.NEXT_PUBLIC_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=app.inloop";
+import Image from "next/image";
+import Link from "next/link";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/site";
 
 export function WallpaperBackground() {
   return (
