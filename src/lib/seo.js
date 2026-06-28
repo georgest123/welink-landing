@@ -79,6 +79,25 @@ export function webSiteJsonLd() {
   };
 }
 
+export function businessPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "InLoop for Business",
+    description:
+      "Host events, sell tickets, run community hubs, and reach people who actually show up with InLoop business tools.",
+    url: `${SITE_URL}/business`,
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+    about: {
+      "@type": "Service",
+      name: "InLoop Business",
+      provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+      serviceType: "Community and event management for businesses",
+      areaServed: "GB",
+    },
+  };
+}
+
 export function mobileAppJsonLd() {
   return {
     "@context": "https://schema.org",

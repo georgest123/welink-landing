@@ -5,6 +5,7 @@ export default function sitemap() {
 
   return [
     { url: SITE_URL, lastModified, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/business`, lastModified, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/privacy`, lastModified, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/child-safety`, lastModified, changeFrequency: "monthly", priority: 0.5 },
   ];

@@ -18,4 +18,7 @@ export const SITE_KEYWORDS = [
   "community hubs",
   "invite-only social",
   "no algorithm feed",
+  "InLoop for business",
+  "event ticketing app",
+  "community hub platform",
 ];

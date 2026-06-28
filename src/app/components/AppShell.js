@@ -57,6 +57,9 @@ export function SiteFooter() {
           <span className="text-sm text-white/50">© {new Date().getFullYear()}</span>
         </div>
         <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:gap-6 sm:text-left">
+          <Link href="/business" className="text-sm text-white/55 transition-colors hover:text-white/85">
+            For Business
+          </Link>
           <Link href="/privacy" className="text-sm text-white/55 transition-colors hover:text-white/85">
             Privacy Policy
           </Link>

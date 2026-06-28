@@ -19,6 +19,7 @@ export function SiteHeader({ compact = false }) {
     : [
         { label: "Why InLoop", href: "#why" },
         { label: "Features", href: "#features" },
+        { label: "Business", href: "/business" },
         { label: "Privacy", href: "#trust" },
         { label: "Download", href: "#download" },
       ];
@@ -42,11 +43,17 @@ export function SiteHeader({ compact = false }) {
         </Link>
         {!compact && (
           <nav className="site-header-nav hidden items-center gap-7 text-sm md:flex" aria-label="Primary">
-            {items.map((item) => (
-              <a key={item.href} href={item.href} className="site-header-link transition-colors">
-                {item.label}
-              </a>
-            ))}
+            {items.map((item) =>
+              item.href.startsWith("/") ? (
+                <Link key={item.href} href={item.href} className="site-header-link transition-colors">
+                  {item.label}
+                </Link>
+              ) : (
+                <a key={item.href} href={item.href} className="site-header-link transition-colors">
+                  {item.label}
+                </a>
+              ),
+            )}
           </nav>
         )}
         {!compact ? (
