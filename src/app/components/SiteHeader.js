@@ -67,6 +67,22 @@ export function SiteHeader({ compact = false }) {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnDesktop = () => {
+      const isDesktopWidth = window.matchMedia("(min-width: 1024px)").matches;
+      const isPhoneLandscape = window.matchMedia(
+        "(max-width: 1023px) and (orientation: landscape) and (min-height: 500px)",
+      ).matches;
+      if (isDesktopWidth || isPhoneLandscape) setMenuOpen(false);
+    };
+
+    closeOnDesktop();
+    window.addEventListener("resize", closeOnDesktop);
+    return () => window.removeEventListener("resize", closeOnDesktop);
+  }, [menuOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -93,7 +109,10 @@ export function SiteHeader({ compact = false }) {
           </Link>
 
           {!compact && (
-            <nav className="site-header-nav hidden items-center gap-7 text-sm md:flex" aria-label="Primary">
+            <nav
+              className="site-header-nav site-header-nav--desktop hidden items-center gap-7 text-sm lg:flex"
+              aria-label="Primary"
+            >
               {items.map((item) => (
                 <NavLink
                   key={item.href + item.label}
@@ -106,18 +125,21 @@ export function SiteHeader({ compact = false }) {
 
           <div className="flex items-center gap-2">
             {!compact ? (
-              <Link href="/#download" className="glass-button-primary hidden h-11 px-5 text-sm md:inline-flex">
+              <Link
+                href="/#download"
+                className="site-header-download--desktop glass-button-primary hidden h-11 px-5 text-sm lg:inline-flex"
+              >
                 Download
               </Link>
             ) : (
-              <Link href="/" className="site-header-link hidden text-sm transition-colors md:inline">
+              <Link href="/" className="site-header-home-link--desktop site-header-link hidden text-sm transition-colors lg:inline">
                 ← Home
               </Link>
             )}
 
             <button
               type="button"
-              className="mobile-menu-toggle md:hidden"
+              className="mobile-menu-toggle inline-flex lg:hidden"
               onClick={() => setMenuOpen((open) => !open)}
               aria-expanded={menuOpen}
               aria-controls="mobile-site-menu"
@@ -131,7 +153,7 @@ export function SiteHeader({ compact = false }) {
         {menuOpen ? (
           <nav
             id="mobile-site-menu"
-            className="mobile-site-menu md:hidden"
+            className="mobile-site-menu lg:hidden"
             aria-label={compact ? "Site navigation" : "Primary"}
           >
             {(compact ? siteNavItems : homeNavItems).map((item) => (

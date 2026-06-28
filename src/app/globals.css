@@ -293,7 +293,6 @@ body {
 }
 
 .mobile-menu-toggle {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
@@ -303,6 +302,32 @@ body {
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.92);
   transition: background-color 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu-toggle,
+  .mobile-site-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) and (orientation: landscape) and (min-height: 500px) {
+  .mobile-menu-toggle,
+  .mobile-site-menu {
+    display: none !important;
+  }
+
+  .site-header-nav--desktop {
+    display: flex !important;
+  }
+
+  .site-header-download--desktop {
+    display: inline-flex !important;
+  }
+
+  .site-header-home-link--desktop {
+    display: inline !important;
+  }
 }
 
 .mobile-menu-toggle:hover {
