@@ -14,7 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   DownloadBadges,
   GlassPanel,
@@ -22,6 +22,7 @@ import {
   SiteHeader,
   WallpaperBackground,
 } from "./components/AppShell";
+import IntroVideo from "./components/IntroVideo";
 import SpiderWeb from "./components/SpiderWeb";
 
 function smoothForAWhile(ms = 400) {
@@ -32,6 +33,9 @@ function smoothForAWhile(ms = 400) {
 }
 
 export default function Page() {
+  const [showMainSite, setShowMainSite] = useState(false);
+  const handleEnterSite = useCallback(() => setShowMainSite(true), []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     try {
@@ -42,17 +46,20 @@ export default function Page() {
   return (
     <div className="relative min-h-screen w-full text-white selection:bg-white/30 selection:text-white">
       <WallpaperBackground />
-      <SiteHeader />
-      <main className="relative z-10">
-        <Hero />
-        <WhyInLoop />
-        <Features />
-        <InnerCircleSection />
-        <AppPillars />
-        <TrustSection />
-        <DownloadSection />
-        <Footer />
-      </main>
+      <IntroVideo onEnterSite={handleEnterSite} />
+      <div className={showMainSite ? "block" : "hidden"}>
+        <SiteHeader />
+        <main className="relative z-10">
+          <Hero />
+          <WhyInLoop />
+          <Features />
+          <InnerCircleSection />
+          <AppPillars />
+          <TrustSection />
+          <DownloadSection />
+          <Footer />
+        </main>
+      </div>
     </div>
   );
 }
