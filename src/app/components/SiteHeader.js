@@ -27,7 +27,7 @@ export function SiteHeader({ compact = false }) {
   return (
     <header className="sticky top-3 z-30 px-4 sm:px-6">
       <div
-        className={`site-header-bar mx-auto flex max-w-5xl items-center justify-between gap-4 glass-panel-chrome px-4 py-3 sm:px-5${
+        className={`site-header-bar mx-auto flex max-w-6xl items-center justify-between gap-4 glass-panel-chrome px-4 py-3 sm:px-5${
           scrolled ? " glass-panel-chrome-scrolled" : ""
         }`}
       >

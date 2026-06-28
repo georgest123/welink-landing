@@ -147,7 +147,7 @@ export default function BusinessPageClient() {
                 Your community isn&apos;t a follower count.{" "}
                 <span className="text-white/75">It&apos;s your superpower.</span>
               </h1>
-              <p className="mx-auto mt-5 max-w-4xl text-base leading-relaxed text-white/72 sm:text-lg">
+              <p className="mt-5 w-full text-base leading-relaxed text-white/72 sm:text-lg">
                 Stop renting attention from platforms that profit when you lose it. InLoop gives venues, organisers, and local brands the tools to host events, sell tickets, run community hubs, and build relationships that actually show up in real life.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -513,10 +513,10 @@ export default function BusinessPageClient() {
 }
 
 function SectionHeading({ reduce = false, title, subtitle, align = "center" }) {
-  const alignment = align === "left" ? "mx-0 text-left" : "mx-auto text-center";
+  const alignment = align === "left" ? "text-left" : "text-center";
 
   return (
-    <div className={`max-w-3xl ${alignment}`}>
+    <div className={`w-full ${alignment}`}>
       <motion.h2
         initial={reduce ? {} : { opacity: 0, y: 12 }}
         whileInView={reduce ? {} : { opacity: 1, y: 0 }}
