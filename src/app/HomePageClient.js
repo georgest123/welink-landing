@@ -71,10 +71,10 @@ export default function HomePageClient() {
 }
 
 const heroGalleryImages = [
-  { src: "/images/hero/picture-2.jpg", alt: "InLoop app preview" },
-  { src: "/images/hero/picture-4.jpg", alt: "InLoop app preview" },
-  { src: "/images/hero/picture-6.jpg", alt: "InLoop app preview" },
-  { src: "/images/hero/picture-8.jpg", alt: "InLoop app preview" },
+  { src: "/images/hero/picture-2.png", alt: "InLoop — Less scroll, more life" },
+  { src: "/images/hero/picture-4.png", alt: "InLoop — You choose what you see" },
+  { src: "/images/hero/picture-6.png", alt: "InLoop — Meaningful connections" },
+  { src: "/images/hero/picture-8.png", alt: "InLoop — Connections" },
 ];
 
 function Hero() {
@@ -161,16 +161,14 @@ function HeroGallery() {
             animate={reduce ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 + index * 0.06 }}
           >
-            <GlassPanel className="overflow-hidden p-2 sm:p-3">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={853}
-                height={1844}
-                className="h-auto w-full rounded-[18px]"
-                priority={index < 2}
-              />
-            </GlassPanel>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={471}
+              height={1024}
+              className="h-auto w-full rounded-[22px] border border-white/10 bg-black"
+              priority={index < 2}
+            />
           </motion.div>
         ))}
       </div>
