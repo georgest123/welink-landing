@@ -56,6 +56,7 @@ export default function HomePageClient() {
         <SiteHeader />
         <main className="relative z-10">
           <Hero />
+          <HeroGallery />
           <WhyInLoop />
           <Features />
           <InnerCircleSection />
@@ -69,92 +70,109 @@ export default function HomePageClient() {
   );
 }
 
+const heroGalleryImages = [
+  { src: "/images/hero/picture-2.jpg", alt: "InLoop app preview" },
+  { src: "/images/hero/picture-4.jpg", alt: "InLoop app preview" },
+  { src: "/images/hero/picture-6.jpg", alt: "InLoop app preview" },
+  { src: "/images/hero/picture-8.jpg", alt: "InLoop app preview" },
+];
+
 function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="scroll-mt-24 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 md:pb-24 md:pt-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
-          <motion.div
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="flex justify-center lg:justify-start"
-          >
-            <Image
-              src="/images/simplelogox1.png"
-              alt="InLoop"
-              width={180}
-              height={54}
-              className="h-12 w-auto sm:h-14"
-              priority
-            />
-          </motion.div>
-          <motion.p
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.04 }}
-            className="mt-6 text-sm font-medium uppercase tracking-[0.24em] text-white/55"
-          >
-            Your inner circle, not the whole internet
-          </motion.p>
-          <motion.h1
-            initial={reduce ? {} : { opacity: 0, y: 16 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="mt-4 text-[2rem] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
-          >
-            Social for the people who actually matter.
-          </motion.h1>
-          <motion.p
-            initial={reduce ? {} : { opacity: 0, y: 16 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-            className="mt-5 max-w-lg text-base leading-relaxed text-white/72 sm:text-lg"
-          >
-            InLoop brings your inner circle, community hubs, events, messages, and calls together in one calm app — with your wallpaper, frosted glass UI, and no algorithmic feed.
-          </motion.p>
-          <motion.div
-            initial={reduce ? {} : { opacity: 0, y: 16 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.16 }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start"
-          >
-            <a href="#download" onClick={() => smoothForAWhile()} className="glass-button-primary">
-              Download InLoop
-            </a>
-            <a href="#features" onClick={() => smoothForAWhile()} className="glass-button-ghost">
-              See what&apos;s inside
-            </a>
-          </motion.div>
-          <motion.div
-            initial={reduce ? {} : { opacity: 0, y: 12 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-8 flex justify-center lg:justify-start"
-          >
-            <DownloadBadges className="justify-center lg:justify-start" />
-          </motion.div>
-        </div>
-
+    <section id="top" className="scroll-mt-24 px-4 pb-10 pt-10 sm:px-6 sm:pb-12 sm:pt-14 md:pb-14 md:pt-20">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={reduce ? {} : { opacity: 0, y: 24 }}
+          initial={reduce ? {} : { opacity: 0, y: 12 }}
           animate={reduce ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.12 }}
-          className="flex justify-center"
+          transition={{ duration: 0.45 }}
+          className="flex justify-center lg:justify-start"
         >
-          <GlassPanel className="inline-flex p-3 sm:p-4">
-            <Image
-              src="/images/feature-images/hero2.PNG"
-              alt="InLoop app preview"
-              width={520}
-              height={780}
-              className="h-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px]"
-              priority
-            />
-          </GlassPanel>
+          <Image
+            src="/images/simplelogox1.png"
+            alt="InLoop"
+            width={180}
+            height={54}
+            className="h-12 w-auto sm:h-14"
+            priority
+          />
         </motion.div>
+        <motion.p
+          initial={reduce ? {} : { opacity: 0, y: 12 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.04 }}
+          className="mt-6 text-center text-sm font-medium uppercase tracking-[0.24em] text-white/55 lg:text-left"
+        >
+          Your inner circle, not the whole internet
+        </motion.p>
+        <motion.h1
+          initial={reduce ? {} : { opacity: 0, y: 16 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.08 }}
+          className="mt-4 w-full text-center text-[2rem] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-left"
+        >
+          Social for the people who actually matter.
+        </motion.h1>
+        <motion.p
+          initial={reduce ? {} : { opacity: 0, y: 16 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
+          className="mt-5 w-full text-center text-base leading-relaxed text-white/72 sm:text-lg lg:text-left"
+        >
+          InLoop brings your inner circle, community hubs, events, messages, and calls together in one calm app — with your wallpaper, frosted glass UI, and no algorithmic feed.
+        </motion.p>
+        <motion.div
+          initial={reduce ? {} : { opacity: 0, y: 16 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.16 }}
+          className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start"
+        >
+          <a href="#download" onClick={() => smoothForAWhile()} className="glass-button-primary">
+            Download InLoop
+          </a>
+          <a href="#features" onClick={() => smoothForAWhile()} className="glass-button-ghost">
+            See what&apos;s inside
+          </a>
+        </motion.div>
+        <motion.div
+          initial={reduce ? {} : { opacity: 0, y: 12 }}
+          animate={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 flex justify-center lg:justify-start"
+        >
+          <DownloadBadges className="justify-center lg:justify-start" />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function HeroGallery() {
+  const reduce = useReducedMotion();
+
+  return (
+    <section aria-label="InLoop app previews" className="px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        {heroGalleryImages.map((image, index) => (
+          <motion.div
+            key={image.src}
+            initial={reduce ? {} : { opacity: 0, y: 18 }}
+            animate={reduce ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 + index * 0.06 }}
+          >
+            <GlassPanel className="overflow-hidden p-2 sm:p-3">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={853}
+                height={1844}
+                className="h-auto w-full rounded-[18px]"
+                priority={index < 2}
+              />
+            </GlassPanel>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
