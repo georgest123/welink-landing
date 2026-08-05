@@ -72,9 +72,9 @@ export default function HomePageClient() {
 
 const heroGalleryImages = [
   { src: "/images/hero/picture-2.png", alt: "InLoop — Less scroll, more life" },
-  { src: "/images/hero/picture-4.png", alt: "InLoop — You choose what you see" },
   { src: "/images/hero/picture-6.png", alt: "InLoop — Meaningful connections" },
   { src: "/images/hero/picture-8.png", alt: "InLoop — Connections" },
+  { src: "/images/hero/picture-4.png", alt: "InLoop — You choose what you see" },
 ];
 
 function Hero() {
