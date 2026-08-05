@@ -378,34 +378,21 @@ function AppPillars() {
           title="Five tabs. One calm app."
           subtitle="The same frosted-glass interface you see in the app — dashboard, feed, community, connect, events, and messages floating over your chosen wallpaper."
         />
-        <div className="mt-12 grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <GlassPanel className="p-6 sm:p-8">
-            <div className="space-y-5">
-              {pillars.map((item) => (
-                <div key={item.label} className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
-                    <item.icon className="h-5 w-5 text-white/90" />
-                  </div>
-                  <div>
-                    <p className="text-base font-semibold text-white/92">{item.label}</p>
-                    <p className="mt-1 text-sm text-white/62">{item.desc}</p>
-                  </div>
+        <GlassPanel className="mt-12 w-full p-6 sm:p-8">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {pillars.map((item) => (
+              <div key={item.label} className="flex items-start gap-4 lg:flex-col lg:gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[20px] border border-white/20 bg-white/10">
+                  <item.icon className="h-5 w-5 text-white/90" />
                 </div>
-              ))}
-            </div>
-          </GlassPanel>
-          <div className="flex justify-center">
-            <GlassPanel className="inline-flex p-3">
-              <Image
-                src="/images/feature-images/hero2.PNG"
-                alt="InLoop app preview"
-                width={320}
-                height={480}
-                className="h-auto w-full max-w-[260px] sm:max-w-[300px]"
-              />
-            </GlassPanel>
+                <div>
+                  <p className="text-base font-semibold text-white/92">{item.label}</p>
+                  <p className="mt-1 text-sm text-white/62">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        </GlassPanel>
       </div>
     </section>
   );
