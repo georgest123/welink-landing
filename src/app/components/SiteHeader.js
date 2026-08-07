@@ -11,6 +11,7 @@ const homeNavItems = [
   { label: "Why InLoop", href: "/#why" },
   { label: "Features", href: "/#features" },
   { label: "Business", href: "/business" },
+  { label: "MyPulse", href: "/mypulse" },
   { label: "Privacy", href: "/#trust" },
   { label: "Download", href: "/#download" },
 ];
@@ -20,6 +21,7 @@ const siteNavItems = [
   { label: "Why InLoop", href: "/#why" },
   { label: "Features", href: "/#features" },
   { label: "Business", href: "/business" },
+  { label: "MyPulse", href: "/mypulse" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Child Safety", href: "/child-safety" },
   { label: "Download", href: "/#download" },

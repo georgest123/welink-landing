@@ -98,6 +98,31 @@ export function businessPageJsonLd() {
   };
 }
 
+export function myPulsePageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: "MyPulse",
+    operatingSystem: "iOS, Android",
+    applicationCategory: "HealthApplication",
+    description:
+      "MyPulse helps you track nutrition, workouts, and progress with optional Apple Health sync and Pulse Coach.",
+    url: `${SITE_URL}/mypulse`,
+    image: `${SITE_URL}/images/mypulse/icon.png`,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "GBP",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "WeLink App LTD",
+      url: SITE_URL,
+      email: SUPPORT_EMAIL,
+    },
+  };
+}
+
 export function mobileAppJsonLd() {
   return {
     "@context": "https://schema.org",

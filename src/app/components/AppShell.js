@@ -60,6 +60,9 @@ export function SiteFooter() {
           <Link href="/business" className="text-sm text-white/55 transition-colors hover:text-white/85">
             For Business
           </Link>
+          <Link href="/mypulse" className="text-sm text-white/55 transition-colors hover:text-white/85">
+            MyPulse
+          </Link>
           <Link href="/privacy" className="text-sm text-white/55 transition-colors hover:text-white/85">
             Privacy Policy
           </Link>
