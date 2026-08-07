@@ -152,6 +152,7 @@ function HeroGallery() {
   const reduce = useReducedMotion();
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
+  const [travel, setTravel] = useState(0);
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -159,8 +160,8 @@ function HeroGallery() {
     if (!viewport || !track) return;
 
     const updateTravel = () => {
-      const travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
-      track.style.setProperty("--hero-carousel-travel", `${travel}px`);
+      const nextTravel = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      setTravel(nextTravel);
     };
 
     updateTravel();
@@ -170,12 +171,10 @@ function HeroGallery() {
 
     const images = track.querySelectorAll("img");
     images.forEach((image) => image.addEventListener("load", updateTravel));
-    window.addEventListener("load", updateTravel);
 
     return () => {
       observer.disconnect();
       images.forEach((image) => image.removeEventListener("load", updateTravel));
-      window.removeEventListener("load", updateTravel);
     };
   }, []);
 
@@ -202,9 +201,20 @@ function HeroGallery() {
       </div>
 
       <div ref={viewportRef} className="hero-carousel-viewport lg:hidden">
-        <div
+        <motion.div
           ref={trackRef}
-          className={`hero-carousel-track${reduce ? " hero-carousel-track--static" : ""}`}
+          className="hero-carousel-track"
+          animate={reduce || travel <= 0 ? { x: 0 } : { x: [0, -travel, 0] }}
+          transition={
+            reduce || travel <= 0
+              ? { duration: 0 }
+              : {
+                  duration: 24,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  times: [0, 0.5, 1],
+                }
+          }
         >
           {heroGalleryImages.map((image, index) => (
             <div key={image.src} className="hero-carousel-slide">
@@ -214,11 +224,11 @@ function HeroGallery() {
                 width={471}
                 height={1024}
                 className="h-auto w-full rounded-[22px] border border-white/10 bg-black"
-                priority={index < 2}
+                priority
               />
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
