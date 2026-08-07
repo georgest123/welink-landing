@@ -354,3 +354,57 @@ body {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
+
+.hero-carousel-viewport {
+  overflow: hidden;
+  padding: 0 16px;
+}
+
+.hero-carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  --hero-carousel-travel: 0px;
+  animation: hero-carousel-pan 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-carousel-track--static {
+  animation: none;
+}
+
+.hero-carousel-slide {
+  flex: 0 0 auto;
+  width: min(58vw, 240px);
+}
+
+@keyframes hero-carousel-pan {
+  0%,
+  8% {
+    transform: translateX(0);
+  }
+  42%,
+  58% {
+    transform: translateX(calc(-1 * var(--hero-carousel-travel)));
+  }
+  92%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-track {
+    animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-carousel-viewport {
+    padding: 0 24px;
+  }
+
+  .hero-carousel-slide {
+    width: min(42vw, 280px);
+  }
+}
