@@ -87,17 +87,17 @@ export default function MyPulsePageClient() {
               <motion.div
                 initial={reduce ? {} : { opacity: 0, y: 12 }}
                 animate={reduce ? {} : { opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 rounded-full border border-[#FF7A3D]/35 bg-[#FF7A3D]/10 px-4 py-1.5"
+                className="flex flex-col items-center gap-4 lg:items-start"
               >
                 <Image
                   src="/images/mypulse/icon.png"
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="h-7 w-7 rounded-lg"
+                  alt="MyPulse"
+                  width={160}
+                  height={160}
+                  className="h-28 w-28 rounded-[1.75rem] shadow-[0_20px_50px_-12px_rgba(255,122,61,0.55)] sm:h-36 sm:w-36 lg:h-40 lg:w-40"
                   priority
                 />
-                <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#FFB08A]">MyPulse</span>
+                <span className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">MyPulse</span>
               </motion.div>
 
               <motion.h1
