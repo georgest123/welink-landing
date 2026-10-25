@@ -307,7 +307,7 @@ function Features() {
     {
       icon: MessageCircle,
       title: "Messages & calls",
-      desc: "Direct messages with optional end-to-end encryption, plus voice and video calls when you want to talk properly.",
+      desc: "Direct messages are end-to-end encrypted where supported. Voice and video calls are built in for when you want to talk properly.",
     },
     {
       icon: Calendar,
@@ -424,7 +424,7 @@ function AppPillars() {
     { icon: Radio, label: "Feed", desc: "Catch up with your inner circle" },
     { icon: LayoutGrid, label: "Community", desc: "Hubs and shared interests" },
     { icon: Users, label: "Inner Circle", desc: "Your connections and Bump to Connect" },
-    { icon: Calendar, label: "Events", desc: "Local gatherings and tickets" },
+    { icon: Calendar, label: "Events", desc: "Local gatherings, with ticketing launching December" },
     { icon: MessageCircle, label: "Messages", desc: "Chat, voice, and video calls" },
   ];
 
@@ -461,7 +461,7 @@ function TrustSection() {
   const points = [
     { icon: Shield, text: "No ads and no attention-farming business model." },
     { icon: Lock, text: "Privacy Center with data export, blocked users, and in-app reporting." },
-    { icon: MessageCircle, text: "Optional end-to-end encryption for direct messages." },
+    { icon: MessageCircle, text: "Direct messages are end-to-end encrypted where supported." },
     { icon: Phone, text: "Voice and video calls built in — not bolted on as an afterthought." },
   ];
 

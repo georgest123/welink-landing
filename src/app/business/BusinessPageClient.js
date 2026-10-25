@@ -42,8 +42,8 @@ const benefits = [
   },
   {
     icon: Ticket,
-    title: "Digital tickets, done properly",
-    desc: "Sell in-app via Stripe. Every attendee gets a unique QR code, optional Apple Wallet and Google Wallet passes, and you scan them in at the door — no clipboards, no third-party scanners.",
+    title: "Digital tickets, launching December",
+    desc: "Sell tickets in-app through Stripe, with a unique QR code for every attendee, in-app scanning at the door and Apple Wallet passes.",
   },
   {
     icon: LayoutGrid,
@@ -70,7 +70,7 @@ const pillars = [
       "Create and promote events with titles, descriptions, times, and pinned locations",
       "Sell tickets through Stripe with unique QR codes per attendee",
       "Scan and check in guests in-app at the door — instant validation, no duplicates",
-      "Apple Wallet and Google Wallet passes for a native ticket experience",
+      "Apple Wallet passes for a native ticket experience",
       "Get discovered by users browsing events near them",
     ],
   },
@@ -79,7 +79,7 @@ const pillars = [
     label: "Community hubs",
     points: [
       "Run an interest-based hub around your brand or scene",
-      "Post updates to people who genuinely care — no pay-to-boost required",
+      "Post updates straight to people who chose to follow you.",
       "Keep your community separate from the noise of a public feed",
       "Build repeat engagement between events",
     ],
@@ -269,7 +269,7 @@ export default function BusinessPageClient() {
                 {
                   icon: Smartphone,
                   title: "Wallet passes",
-                  desc: "Attendees can add tickets to Apple Wallet or Google Wallet — the way people expect modern events to work.",
+                  desc: "Attendees can add tickets to Apple Wallet — the way people expect modern events to work.",
                 },
                 {
                   icon: CreditCard,
@@ -302,7 +302,7 @@ export default function BusinessPageClient() {
             <SectionHeading
               reduce={reduce}
               title="Three plans. Pick your scale."
-              subtitle="Every tier includes business profiles, event publishing, digital ticketing with QR check-in, wallet passes, and Stripe payments. Upgrade when your community grows."
+              subtitle="Every tier includes business profiles, event publishing, digital ticketing with QR check-in and Stripe payments (launching December). Upgrade when your community grows."
             />
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {businessPlans.map((plan, index) => (
@@ -355,6 +355,9 @@ export default function BusinessPageClient() {
               ))}
             </div>
             <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-white/50">
+              Promoted events and featured placements are always clearly labelled &lsquo;Promoted&rsquo; in the app.
+            </p>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-white/50">
               Plans are managed in-app after you create your business profile. Prices shown in GBP. Need City Partner or a custom setup?{" "}
               <a
                 href="mailto:support@inloop.uk?subject=InLoop%20Business%20Plans"
@@ -466,7 +469,7 @@ export default function BusinessPageClient() {
                   Attendees get a digital ticket with a unique QR code the moment they buy. At the door, open the in-app scanner — valid tickets check in instantly; duplicates and fakes get caught on the spot.
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-white/68">
-                  For a premium feel, guests can save passes to <strong className="text-white/90">Apple Wallet</strong> or <strong className="text-white/90">Google Wallet</strong>. Payments run through <strong className="text-white/90">Stripe</strong> — secure checkout, subscriptions, and business billing built in.
+                  For a premium feel, guests can save passes to <strong className="text-white/90">Apple Wallet</strong>. Payments run through <strong className="text-white/90">Stripe</strong> — secure checkout, subscriptions, and business billing built in.
                 </p>
               </GlassPanel>
             </div>
