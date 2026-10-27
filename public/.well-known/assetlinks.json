@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.inloop",
+      "sha256_cert_fingerprints": [
+        "1E:DF:29:B4:19:A9:AA:36:B2:01:02:87:B8:C6:16:8D:83:39:A9:85:E0:B4:E8:D5:D1:7A:0D:FF:84:A5:C6:A1",
+        "39:15:6D:7A:DF:7F:2C:E1:B1:E1:0A:FA:57:39:E1:EF:F2:FE:54:E6:D0:3D:8F:7A:CC:ED:2A:44:50:94:EE:34"
+      ]
+    }
+  }
+]

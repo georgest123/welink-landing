@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "26W9857NGA.com.welink.dev"
+        ],
+        "appID": "26W9857NGA.com.welink.dev",
+        "paths": [
+          "/invite/*"
+        ],
+        "components": [
+          {
+            "/": "/invite/*",
+            "comment": "Personal invite links"
+          }
+        ]
+      }
+    ]
+  }
+}

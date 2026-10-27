@@ -2,7 +2,8 @@ export { SiteHeader } from "./SiteHeader";
 
 import Image from "next/image";
 import Link from "next/link";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/site";
+import { APP_STORE_URL } from "@/lib/site";
+import PlayStoreBadge from "./PlayStoreBadge";
 
 export function WallpaperBackground() {
   return (
@@ -18,7 +19,7 @@ export function WallpaperBackground() {
   );
 }
 
-export function DownloadBadges({ className = "" }) {
+export function DownloadBadges({ className = "", utm = null }) {
   return (
     <div className={`flex flex-wrap items-center justify-center gap-4 ${className}`.trim()}>
       <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block transition-opacity hover:opacity-90">
@@ -30,20 +31,7 @@ export function DownloadBadges({ className = "" }) {
           className="h-11 w-auto"
         />
       </a>
-      <a
-        href={PLAY_STORE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block transition-opacity hover:opacity-90"
-      >
-        <Image
-          src="/images/feature-images/Get_it_on_Google_Play_Badge.png"
-          alt="Get it on Google Play"
-          width={140}
-          height={46}
-          className="h-11 w-auto"
-        />
-      </a>
+      <PlayStoreBadge utm={utm} />
     </div>
   );
 }
