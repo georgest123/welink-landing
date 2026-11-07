@@ -75,8 +75,22 @@ export default function PrivacyPage() {
 
             <Section title="7. Retention">
               <p>
-                <strong className="text-white/90">PLACEHOLDER - approved retention wording required:</strong> Specific retention periods have not been confirmed. We will update this section once approved retention periods are available for account data, app content, payments, support records, analytics, crash logs, backups, and legal records.
+                We keep personal information only for as long as we need it for the purposes described in this notice. The period depends on why we hold it, whether the law requires us to keep it, and whether we need it for a complaint, legal claim, safety concern, regulator request or police request. A legal hold pauses deletion for the relevant records and resumes when the hold ends.
               </p>
+              <ul className="list-disc space-y-2 pl-5 marker:text-white/40">
+                <li>Account data is kept while your account is active. After a verified account deletion request, account data we control is deleted or anonymised from live systems within 30 days, except where we need to keep specific records for the reasons in this section.</li>
+                <li>Profile information, photos, posts, comments, reactions, hub content and media are kept until you edit or remove them, or until account deletion. Block records may be kept in minimal form while the other account exists so blocks remain effective.</li>
+                <li>Messaging and call metadata is kept until the conversation is deleted, account deletion, or 12 months after last activity, whichever is sooner. Messages and media already shared with other people may remain on their devices.</li>
+                <li>Event records are kept until 12 months after the event ends, then deleted or anonymised. Event location is kept with the event record.</li>
+                <li>Ticket records, QR codes and Google Wallet pass records are kept with the related transaction record. QR codes and passes are invalidated after the event. Wallet passes stored on your device remain there until you remove them.</li>
+                <li>Transaction, refund, payout, dispute, contract and invoice records are kept for the applicable accounting and tax period, generally six years from the end of the financial year they relate to, and longer where HMRC rules require it or a legal hold applies.</li>
+                <li>Business subscriber and organiser or venue contract records are kept for six years after the contract ends.</li>
+                <li>Support requests and emails are kept for two years after the request is closed, unless a legal hold applies.</li>
+                <li>Safety reports, moderation decisions, appeals and related block records are kept for two years after closure. Serious safeguarding or child-safety cases may be kept longer under legal hold where needed.</li>
+                <li>Push notification tokens are kept until logout, uninstall, invalid token cleanup, or account deletion.</li>
+                <li>Security and access logs for Firebase, Cloud Functions and Vercel are kept for 12 months.</li>
+                <li>Backups are kept on a rolling cycle of no more than 35 days. Data removed from live systems may remain in backups until the relevant backup expires, unless a legal hold applies.</li>
+              </ul>
             </Section>
 
             <Section title="8. Your UK GDPR rights">
