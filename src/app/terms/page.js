@@ -42,7 +42,7 @@ export default function TermsPage() {
 
             <Section title="3. Tickets: who you are buying from">
               <p>
-                When you buy a ticket through InLoop, you are buying it from the <strong className="text-white/90">event organiser</strong> named on the event page and at checkout. The organiser is responsible for the event and for your ticket contract. InLoop (WELINKAPP LTD, company number 16487223) provides the app and website and processes payment as the organiser&apos;s platform and agent.
+                When you buy a ticket through InLoop, you are buying it from the <strong className="text-white/90">event organiser</strong>. The organiser is responsible for the event and for your ticket contract. InLoop (WELINKAPP LTD, company number 16487223) provides the app and website and processes payment as the organiser&apos;s platform and agent.
               </p>
               <p>Payments are processed by our payment provider, Stripe.</p>
               <p>
@@ -60,23 +60,20 @@ export default function TermsPage() {
               </p>
               <ul className="list-disc space-y-2 pl-5 marker:text-white/40">
                 <li>
-                  <strong className="text-white/90">Standard refundable tickets:</strong> Unless the event is shown as non-refundable, you can cancel your ticket and get a full refund of the amount you paid if you cancel at least 48 hours before the event&apos;s advertised start time. If you cancel less than 48 hours before the start time, you will not normally get a refund under this policy. This does not affect your rights in section 5.
-                </li>
-                <li>
-                  <strong className="text-white/90">Non-refundable tickets:</strong> Some organisers make their tickets non-refundable. If so, we will show this clearly on the event page and at checkout before you pay. If you buy a non-refundable ticket, you cannot cancel it for a refund under the standard refundable ticket policy, even if you cancel more than 48 hours before the event. Your rights in section 5 still apply.
+                  <strong className="text-white/90">Paid tickets:</strong> You can cancel your paid ticket and get a full refund of the amount you paid if you cancel at least 48 hours before the event&apos;s advertised start time. If you cancel less than 48 hours before the start time, you will not normally get a refund under this policy. This does not affect your rights in section 5.
                 </li>
                 <li>
                   <strong className="text-white/90">Free events:</strong> If you got a free ticket, there is nothing to refund. You can still cancel your place to let someone else go.
                 </li>
                 <li>
-                  <strong className="text-white/90">Not attending:</strong> If you do not go to an event that goes ahead as advertised, you will not get a refund unless you cancelled in time under the standard refundable ticket policy or section 5 applies.
+                  <strong className="text-white/90">Not attending:</strong> If you do not go to an event that goes ahead as advertised, you will not get a refund unless you cancelled in time under the paid-ticket policy or section 5 applies.
                 </li>
               </ul>
             </Section>
 
-            <Section title="5. When you are entitled to a refund whatever the ticket type">
+            <Section title="5. When you are entitled to a refund regardless of timing">
               <p>
-                You are entitled to a full refund of the amount you paid, whatever the ticket type and however close to the event, if:
+                You are entitled to a full refund of the amount you paid, however close to the event, if:
               </p>
               <ul className="list-disc space-y-2 pl-5 marker:text-white/40">
                 <li>the organiser cancels the event;</li>
@@ -133,7 +130,7 @@ export default function TermsPage() {
                 You are the seller of tickets for your events and are responsible for the event, accurate event information, and honouring buyers&apos; legal rights. InLoop acts as your platform and agent to list tickets and collect payment.
               </p>
               <p>
-                You must state clearly when you set up an event whether tickets are refundable. If you mark tickets as non-refundable, buyers can still get a refund if you cancel or significantly change the event or if the law gives them a right to one.
+                You must provide accurate event information and honour buyers&apos; refund rights, including when you cancel or significantly change an event or when the law gives the buyer a right to a refund.
               </p>
               <p>
                 When a ticket is refunded, the payment transferred to you for that ticket is reversed, and InLoop&apos;s commission on that ticket is also refunded.
