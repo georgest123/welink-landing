@@ -39,31 +39,39 @@ export function DownloadBadges({ className = "", utm = null }) {
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-white/15 py-10 md:py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
-          <Image src="/images/simplelogox1.png" alt="InLoop" width={120} height={36} className="h-7 w-auto" />
-          <span className="text-sm text-white/50">© {new Date().getFullYear()}</span>
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex items-center gap-3">
+            <Image src="/images/simplelogox1.png" alt="InLoop" width={120} height={36} className="h-7 w-auto" />
+            <span className="text-sm text-white/50">© {new Date().getFullYear()}</span>
+          </div>
+          <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:gap-6 sm:text-left">
+            <Link href="/business" className="text-sm text-white/55 transition-colors hover:text-white/85">
+              For Business
+            </Link>
+            <Link href="/mypulse" className="text-sm text-white/55 transition-colors hover:text-white/85">
+              MyPulse
+            </Link>
+            <Link href="/terms" className="text-sm text-white/55 transition-colors hover:text-white/85">
+              Terms
+            </Link>
+            <Link href="/privacy" className="text-sm text-white/55 transition-colors hover:text-white/85">
+              Privacy Policy
+            </Link>
+            <Link href="/child-safety" className="text-sm text-white/55 transition-colors hover:text-white/85">
+              Child Safety
+            </Link>
+            <a
+              href="mailto:support@inloop.uk"
+              className="text-sm text-white/55 transition-colors hover:text-white/85"
+            >
+              support@inloop.uk
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:gap-6 sm:text-left">
-          <Link href="/business" className="text-sm text-white/55 transition-colors hover:text-white/85">
-            For Business
-          </Link>
-          <Link href="/mypulse" className="text-sm text-white/55 transition-colors hover:text-white/85">
-            MyPulse
-          </Link>
-          <Link href="/privacy" className="text-sm text-white/55 transition-colors hover:text-white/85">
-            Privacy Policy
-          </Link>
-          <Link href="/child-safety" className="text-sm text-white/55 transition-colors hover:text-white/85">
-            Child Safety
-          </Link>
-          <a
-            href="mailto:support@inloop.uk"
-            className="text-sm text-white/55 transition-colors hover:text-white/85"
-          >
-            support@inloop.uk
-          </a>
-        </div>
+        <p className="max-w-4xl text-center text-xs leading-relaxed text-white/45 sm:text-left">
+          InLoop is a trading name of WELINKAPP LTD, registered in England and Wales, company number 16487223. Registered office: 30 Coltsfoot Place, Conniburrow, Milton Keynes, England, MK14 7BP.
+        </p>
       </div>
     </footer>
   );
