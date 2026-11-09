@@ -307,7 +307,7 @@ function Features() {
     {
       icon: MessageCircle,
       title: "Messages & calls",
-      desc: "Direct messages are end-to-end encrypted where supported. Voice and video calls are built in for when you want to talk properly.",
+      desc: "Text messages are end-to-end encrypted when you both use the latest InLoop app. Photos and videos are not. Voice and video calls are built in for when you want to talk properly.",
     },
     {
       icon: Calendar,
@@ -461,7 +461,7 @@ function TrustSection() {
   const points = [
     { icon: Shield, text: "No ads and no attention-farming business model." },
     { icon: Lock, text: "Privacy Center with data export, blocked users, and in-app reporting." },
-    { icon: MessageCircle, text: "Direct messages are end-to-end encrypted where supported." },
+    { icon: MessageCircle, text: "Text messages are end-to-end encrypted when you both use the latest InLoop app. Photos and videos are not." },
     { icon: Phone, text: "Voice and video calls built in — not bolted on as an afterthought." },
   ];
 

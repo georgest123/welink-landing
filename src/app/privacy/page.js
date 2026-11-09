@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         <article className="glass-panel px-5 py-8 sm:px-8 sm:py-10">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">InLoop Privacy Policy</h1>
           <p className="mt-3 text-sm text-white/60">
-            <strong className="font-medium text-white/75">Last updated:</strong> November 7, 2026
+            <strong className="font-medium text-white/75">Last updated:</strong> 9 November 2026
           </p>
           <p className="mt-6 text-sm leading-relaxed text-white/80">
             This Privacy Policy explains how WELINKAPP LTD handles personal data for InLoop. Contact us at{" "}
@@ -113,7 +113,13 @@ export default function PrivacyPage() {
               </p>
             </Section>
 
-            <Section title="10. Changes">
+            <Section title="10. Age">
+              <p>
+                InLoop is for users aged 18 and over. We do not knowingly collect personal information from anyone under 18. If we learn we have, we delete it.
+              </p>
+            </Section>
+
+            <Section title="11. Changes">
               <p>We may update this Privacy Policy by posting a new version on this page and changing the “Last updated” date.</p>
             </Section>
           </div>
