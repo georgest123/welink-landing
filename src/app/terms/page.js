@@ -17,7 +17,7 @@ export default function TermsPage() {
         <article className="glass-panel px-5 py-8 sm:px-8 sm:py-10">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">InLoop Terms of Service</h1>
           <p className="mt-3 text-sm text-white/60">
-            <strong className="font-medium text-white/75">Last updated:</strong> November 7, 2026
+            <strong className="font-medium text-white/75">Last updated:</strong> 9 November 2026
           </p>
           <p className="mt-6 text-sm leading-relaxed text-white/80">
             InLoop is a trading name of WELINKAPP LTD, registered in England and Wales, company number 16487223. Registered office: 30 Coltsfoot Place, Conniburrow, Milton Keynes, England, MK14 7BP. Contact{" "}
@@ -28,19 +28,25 @@ export default function TermsPage() {
           </p>
 
           <div className="mt-10 flex flex-col gap-10 border-t border-white/10 pt-10">
-            <Section title="1. Using InLoop">
+            <Section title="1. Eligibility">
+              <p>
+                InLoop is for people aged 18 and over. You confirm you are 18 or over when you sign up (self-declared). We may close accounts we believe belong to under-18s.
+              </p>
+            </Section>
+
+            <Section title="2. Using InLoop">
               <p>
                 You must use InLoop lawfully, keep account details accurate, and protect your sign-in credentials. You are responsible for the content and information you choose to submit through the service.
               </p>
             </Section>
 
-            <Section title="2. Acceptable conduct">
+            <Section title="3. Acceptable conduct">
               <p>
                 Do not use InLoop to harass others, impersonate people or organisations, upload unlawful or harmful content, interfere with the service, or bypass security or access controls.
               </p>
             </Section>
 
-            <Section title="3. Tickets: who you are buying from">
+            <Section title="4. Tickets: who you are buying from">
               <p>
                 When you buy a ticket through InLoop, you are buying it from the <strong className="text-white/90">event organiser</strong>. The organiser is responsible for the event and for your ticket contract. InLoop (WELINKAPP LTD, company number 16487223) provides the app and website and processes payment as the organiser&apos;s platform and agent.
               </p>
@@ -54,24 +60,24 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="4. Cancelling a ticket you have bought">
+            <Section title="5. Cancelling a ticket you have bought">
               <p>
                 Tickets for leisure events that take place on a specific date or during a specific period are not covered by the legal 14-day &quot;cooling-off&quot; right to cancel online purchases. This means you cannot cancel such a ticket just because you have changed your mind, unless the policy below allows it.
               </p>
               <ul className="list-disc space-y-2 pl-5 marker:text-white/40">
                 <li>
-                  <strong className="text-white/90">Paid tickets:</strong> You can cancel your paid ticket and get a full refund of the amount you paid if you cancel at least 48 hours before the event&apos;s advertised start time. If you cancel less than 48 hours before the start time, you will not normally get a refund under this policy. This does not affect your rights in section 5.
+                  <strong className="text-white/90">Paid tickets:</strong> You can cancel your paid ticket and get a full refund of the amount you paid if you cancel at least 48 hours before the event&apos;s advertised start time. If you cancel less than 48 hours before the start time, you will not normally get a refund under this policy. This does not affect your rights in section 6.
                 </li>
                 <li>
                   <strong className="text-white/90">Free events:</strong> If you got a free ticket, there is nothing to refund. You can still cancel your place to let someone else go.
                 </li>
                 <li>
-                  <strong className="text-white/90">Not attending:</strong> If you do not go to an event that goes ahead as advertised, you will not get a refund unless you cancelled in time under the paid-ticket policy or section 5 applies.
+                  <strong className="text-white/90">Not attending:</strong> If you do not go to an event that goes ahead as advertised, you will not get a refund unless you cancelled in time under the paid-ticket policy or section 6 applies.
                 </li>
               </ul>
             </Section>
 
-            <Section title="5. When you are entitled to a refund regardless of timing">
+            <Section title="6. When you are entitled to a refund regardless of timing">
               <p>
                 You are entitled to a full refund of the amount you paid, however close to the event, if:
               </p>
@@ -85,7 +91,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="6. How refunds are paid">
+            <Section title="7. How refunds are paid">
               <p>Refunds go back to the payment method you used. We do not charge a fee for processing a refund.</p>
               <p>We process refunds without undue delay and within any applicable statutory deadline.</p>
               <p>
@@ -93,7 +99,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="7. Disputes and chargebacks">
+            <Section title="8. Disputes and chargebacks">
               <p>If something goes wrong, please contact us first. We can usually resolve problems more quickly than a card dispute.</p>
               <p>
                 Nothing in these terms stops you from asking your bank or card provider to dispute a payment or make a chargeback, or from using any other legal right. We do not charge you any fee for doing so.
@@ -101,7 +107,7 @@ export default function TermsPage() {
               <p>If you get a refund from us and also through a chargeback for the same payment, we may ask you to pay back the duplicate amount.</p>
             </Section>
 
-            <Section title="8. Our responsibility to consumers">
+            <Section title="9. Our responsibility to consumers">
               <p>
                 We provide the InLoop app, website and ticketing features with reasonable care and skill. The organiser is responsible for running the event and for anything that happens at it that is within the organiser&apos;s control.
               </p>
@@ -114,7 +120,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="9. Business subscriptions">
+            <Section title="10. Business subscriptions">
               <p>Your subscription renews automatically at the end of each billing period unless you cancel.</p>
               <p>You can cancel at any time. Cancellation takes effect at the end of your current paid billing period. You will keep access until then.</p>
               <p>
@@ -125,7 +131,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="10. Ticket sales by organisers">
+            <Section title="11. Ticket sales by organisers">
               <p>
                 You are the seller of tickets for your events and are responsible for the event, accurate event information, and honouring buyers&apos; legal rights. InLoop acts as your platform and agent to list tickets and collect payment.
               </p>
@@ -138,7 +144,7 @@ export default function TermsPage() {
               <p>InLoop currently pays Stripe&apos;s dispute fees on ticket payments. We will tell you in writing before this changes, and any change will only apply to future events under your updated agreement.</p>
             </Section>
 
-            <Section title="11. Liability for business customers">
+            <Section title="12. Liability for business customers">
               <p>We provide our services with reasonable care and skill.</p>
               <p>
                 Nothing in these terms limits or excludes liability for death or personal injury caused by negligence, fraud or fraudulent misrepresentation, or any other liability that cannot be limited or excluded by law.
@@ -146,7 +152,7 @@ export default function TermsPage() {
               <p>Subject to the paragraph above, we are not liable for loss of profits, revenue, business or goodwill, or for indirect or consequential loss.</p>
             </Section>
 
-            <Section title="12. Safety and reporting">
+            <Section title="13. Safety and reporting">
               <p>
                 Our child safety standards are published on the{" "}
                 <a href="/child-safety" className="text-white underline decoration-white/40 underline-offset-2 hover:decoration-white">
@@ -156,7 +162,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="13. Privacy">
+            <Section title="14. Privacy">
               <p>
                 How we handle personal data is described in the{" "}
                 <a href="/privacy" className="text-white underline decoration-white/40 underline-offset-2 hover:decoration-white">
@@ -166,7 +172,7 @@ export default function TermsPage() {
               </p>
             </Section>
 
-            <Section title="14. Changes">
+            <Section title="15. Changes">
               <p>
                 We may update these terms by posting a new version on this page and changing the “Last updated” date.
               </p>
